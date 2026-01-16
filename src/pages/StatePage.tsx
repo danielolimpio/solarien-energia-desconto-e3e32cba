@@ -1,4 +1,4 @@
-import { useParams, Navigate, Link } from "react-router-dom";
+import { useParams, Navigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Sun, Zap, TrendingDown, Leaf, Building2, Home, Factory, MapPin, CheckCircle2, ArrowRight } from "lucide-react";
 import Header from "@/components/Header";
@@ -324,8 +324,8 @@ const StatePage = () => {
               <div className="max-w-5xl mx-auto">
                 {/* Capital Highlight */}
                 {getCitiesByState(state.abbreviation).filter(c => c.isCapital).map((city) => (
-                  <Link key={city.slug} to={`/${city.slug}`} className="mb-8 text-center block">
-                    <div className="inline-flex items-center gap-3 bg-gradient-to-r from-primary/10 via-secondary/10 to-accent/10 px-8 py-4 rounded-2xl border border-primary/20 hover:border-primary/40 transition-all">
+                  <div key={city.name} className="mb-8 text-center">
+                    <div className="inline-flex items-center gap-3 bg-gradient-to-r from-primary/10 via-secondary/10 to-accent/10 px-8 py-4 rounded-2xl border border-primary/20">
                       <div className="w-10 h-10 rounded-full bg-gradient-solar flex items-center justify-center">
                         <MapPin className="w-5 h-5 text-white" />
                       </div>
@@ -334,7 +334,7 @@ const StatePage = () => {
                         <h3 className="font-display text-xl font-bold">{city.name}</h3>
                       </div>
                     </div>
-                  </Link>
+                  </div>
                 ))}
 
                 {/* Other Cities */}
@@ -342,14 +342,13 @@ const StatePage = () => {
                   {getCitiesByState(state.abbreviation)
                     .filter(c => !c.isCapital)
                     .map((city) => (
-                      <Link
-                        key={city.slug}
-                        to={`/${city.slug}`}
+                      <div
+                        key={city.name}
                         className="inline-flex items-center gap-2 bg-card px-4 py-2 rounded-full border border-border/50 hover:border-primary/30 hover:bg-primary/5 transition-all text-sm"
                       >
                         <MapPin className="w-3 h-3 text-primary" />
                         {city.name}
-                      </Link>
+                      </div>
                     ))}
                 </div>
 
