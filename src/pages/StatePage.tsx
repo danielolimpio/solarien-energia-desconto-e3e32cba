@@ -1,6 +1,6 @@
 import { useParams, Navigate, Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import { Sun, Zap, TrendingDown, Leaf, Building2, Home, Factory, MapPin, CheckCircle2, ArrowRight, Tag } from "lucide-react";
+import { Sun, Zap, TrendingDown, Leaf, Building2, Home, Factory, MapPin, CheckCircle2, ArrowRight } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -309,58 +309,46 @@ const StatePage = () => {
 
           <SectionDivider />
 
-          {/* Cities Section with SEO Tags */}
+          {/* Cities Section */}
           <section className="py-20 bg-card/50">
             <div className="container mx-auto px-4">
-              <div className="text-center mb-8">
-                <div className="inline-flex items-center gap-2 text-primary mb-4">
-                  <Tag className="w-5 h-5" />
-                  <span className="text-sm font-semibold uppercase tracking-wider">Mercado Livre de Energia</span>
-                </div>
-                <h2 className="font-display text-2xl md:text-3xl font-bold mb-4">
-                  Cidades Atendidas {state.preposition}{" "}
-                  <span className="text-gradient">{state.name}</span>
-                </h2>
-                <p className="text-muted-foreground max-w-2xl mx-auto">
-                  O Mercado Livre de Energia está disponível em todas as principais cidades {state.preposition} {state.name}. 
-                  Clique em uma cidade para saber mais sobre economia de energia:
-                </p>
-              </div>
+              <h2 className="font-display text-2xl md:text-3xl font-bold text-center mb-4">
+                Cidades Atendidas {state.preposition}{" "}
+                <span className="text-gradient">{state.name}</span>
+              </h2>
+              <p className="text-center text-muted-foreground mb-10 max-w-2xl mx-auto">
+                O Mercado Livre de Energia está disponível em todas as principais cidades {state.preposition} {state.name}. 
+                Confira a capital e os principais municípios atendidos:
+              </p>
               
               <div className="max-w-5xl mx-auto">
-                {/* Capital Highlight with Link */}
+                {/* Capital Highlight */}
                 {getCitiesByState(state.abbreviation).filter(c => c.isCapital).map((city) => (
-                  <div key={city.name} className="mb-8 text-center">
-                    <Link 
-                      to={`/${city.slug}`}
-                      className="inline-flex items-center gap-3 bg-gradient-to-r from-primary/10 via-secondary/10 to-accent/10 px-8 py-4 rounded-2xl border border-primary/20 hover:border-primary/40 hover:shadow-elegant transition-all group"
-                      title={`Mercado Livre de Energia em ${city.name} - ${state.abbreviation}`}
-                    >
-                      <div className="w-10 h-10 rounded-full bg-gradient-solar flex items-center justify-center group-hover:scale-110 transition-transform">
+                  <Link key={city.slug} to={`/${city.slug}`} className="mb-8 text-center block">
+                    <div className="inline-flex items-center gap-3 bg-gradient-to-r from-primary/10 via-secondary/10 to-accent/10 px-8 py-4 rounded-2xl border border-primary/20 hover:border-primary/40 transition-all">
+                      <div className="w-10 h-10 rounded-full bg-gradient-solar flex items-center justify-center">
                         <MapPin className="w-5 h-5 text-white" />
                       </div>
                       <div className="text-left">
                         <span className="text-xs uppercase tracking-wider text-primary font-semibold">Capital</span>
-                        <h3 className="font-display text-xl font-bold group-hover:text-primary transition-colors">{city.name} - {state.abbreviation}</h3>
+                        <h3 className="font-display text-xl font-bold">{city.name}</h3>
                       </div>
-                      <ArrowRight className="w-5 h-5 text-primary opacity-0 group-hover:opacity-100 transition-opacity" />
-                    </Link>
-                  </div>
+                    </div>
+                  </Link>
                 ))}
 
-                {/* City Tags/Badges with Links */}
-                <div className="flex flex-wrap justify-center gap-2" role="navigation" aria-label="Cidades atendidas">
+                {/* Other Cities */}
+                <div className="flex flex-wrap justify-center gap-3">
                   {getCitiesByState(state.abbreviation)
                     .filter(c => !c.isCapital)
                     .map((city) => (
                       <Link
                         key={city.slug}
                         to={`/${city.slug}`}
-                        className="inline-flex items-center gap-2 bg-card px-4 py-2 rounded-full border border-border/50 hover:border-primary/30 hover:bg-primary/5 hover:shadow-sm transition-all text-sm group"
-                        title={`Mercado Livre de Energia em ${city.name} - ${state.abbreviation}`}
+                        className="inline-flex items-center gap-2 bg-card px-4 py-2 rounded-full border border-border/50 hover:border-primary/30 hover:bg-primary/5 transition-all text-sm"
                       >
                         <MapPin className="w-3 h-3 text-primary" />
-                        <span className="group-hover:text-primary transition-colors">{city.name} - {state.abbreviation}</span>
+                        {city.name}
                       </Link>
                     ))}
                 </div>

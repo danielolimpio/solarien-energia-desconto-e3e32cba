@@ -8,24 +8,21 @@ export interface StateCities {
   [stateAbbreviation: string]: CityInfo[];
 }
 
-// Helper function to create slug without accents
-const createCitySlug = (cityName: string, stateAbbreviation: string): string => {
-  const normalized = cityName
+// Helper function to generate slug from city name and state abbreviation
+const generateSlug = (cityName: string, stateAbbr: string): string => {
+  return `mercado-livre-de-energia-em-${cityName
     .toLowerCase()
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '') // Remove accents
-    .replace(/[^a-z0-9\s-]/g, '') // Remove special chars
-    .replace(/\s+/g, '-') // Replace spaces with hyphens
-    .replace(/-+/g, '-') // Replace multiple hyphens with single
-    .trim();
-  
-  return `mercado-livre-de-energia-em-${normalized}-${stateAbbreviation.toLowerCase()}`;
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9\s-]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-")}-${stateAbbr.toLowerCase()}`;
 };
 
-// Helper to create city data with slug
-const city = (name: string, stateAbbreviation: string, isCapital?: boolean): CityInfo => ({
+// Helper to create city with auto-generated slug
+const city = (name: string, stateAbbr: string, isCapital = false): CityInfo => ({
   name,
-  slug: createCitySlug(name, stateAbbreviation),
+  slug: generateSlug(name, stateAbbr),
   isCapital,
 });
 
@@ -46,13 +43,6 @@ export const citiesByState: StateCities = {
     city("Porto Acre", "AC"),
     city("Bujari", "AC"),
     city("Acrelândia", "AC"),
-    city("Assis Brasil", "AC"),
-    city("Capixaba", "AC"),
-    city("Jordão", "AC"),
-    city("Manoel Urbano", "AC"),
-    city("Marechal Thaumaturgo", "AC"),
-    city("Porto Walter", "AC"),
-    city("Santa Rosa do Purus", "AC"),
   ],
   AL: [
     city("Maceió", "AL", true),
@@ -75,16 +65,6 @@ export const citiesByState: StateCities = {
     city("Matriz de Camaragibe", "AL"),
     city("São Luís do Quitunde", "AL"),
     city("Porto Calvo", "AL"),
-    city("Joaquim Gomes", "AL"),
-    city("Teotônio Vilela", "AL"),
-    city("São José da Tapera", "AL"),
-    city("Igreja Nova", "AL"),
-    city("Ibateguara", "AL"),
-    city("Porto Real do Colégio", "AL"),
-    city("Pão de Açúcar", "AL"),
-    city("Olho d'Água das Flores", "AL"),
-    city("Batalha", "AL"),
-    city("Craíbas", "AL"),
   ],
   AP: [
     city("Macapá", "AP", true),
@@ -102,7 +82,6 @@ export const citiesByState: StateCities = {
     city("Cutias", "AP"),
     city("Serra do Navio", "AP"),
     city("Pracuúba", "AP"),
-    city("Itaubal", "AP"),
   ],
   AM: [
     city("Manaus", "AM", true),
@@ -130,11 +109,6 @@ export const citiesByState: StateCities = {
     city("Barcelos", "AM"),
     city("Boca do Acre", "AM"),
     city("Fonte Boa", "AM"),
-    city("Envira", "AM"),
-    city("Jutaí", "AM"),
-    city("Santa Isabel do Rio Negro", "AM"),
-    city("Urucará", "AM"),
-    city("Barreirinha", "AM"),
   ],
   BA: [
     city("Salvador", "BA", true),
@@ -226,11 +200,6 @@ export const citiesByState: StateCities = {
     city("Candangolândia", "DF"),
     city("Park Way", "DF"),
     city("Estrutural", "DF"),
-    city("SIA", "DF"),
-    city("Varjão", "DF"),
-    city("Jardim Botânico", "DF"),
-    city("Itapoã", "DF"),
-    city("Fercal", "DF"),
   ],
   ES: [
     city("Vitória", "ES", true),
@@ -706,11 +675,6 @@ export const citiesByState: StateCities = {
     city("Mirante da Serra", "RO"),
     city("Cujubim", "RO"),
     city("Costa Marques", "RO"),
-    city("Alvorada d'Oeste", "RO"),
-    city("Nova Brasilândia d'Oeste", "RO"),
-    city("Alto Paraíso", "RO"),
-    city("Monte Negro", "RO"),
-    city("São Felipe d'Oeste", "RO"),
   ],
   RR: [
     city("Boa Vista", "RR", true),
@@ -791,7 +755,7 @@ export const citiesByState: StateCities = {
     city("Taboão da Serra", "SP"),
     city("Sumaré", "SP"),
     city("Barueri", "SP"),
-    city("Indaiatuba", "SP"),
+    city("Embu das Artes", "SP"),
   ],
   SE: [
     city("Aracaju", "SE", true),
@@ -853,22 +817,22 @@ export const getCitiesByState = (stateAbbreviation: string): CityInfo[] => {
   return citiesByState[stateAbbreviation] || [];
 };
 
-export const getCityBySlug = (slug: string): { city: CityInfo; stateAbbreviation: string } | undefined => {
-  for (const [stateAbbreviation, cities] of Object.entries(citiesByState)) {
-    const city = cities.find(c => c.slug === slug);
+export const getCityBySlug = (slug: string): { city: CityInfo; stateAbbr: string } | undefined => {
+  for (const [stateAbbr, cities] of Object.entries(citiesByState)) {
+    const city = cities.find((c) => c.slug === slug);
     if (city) {
-      return { city, stateAbbreviation };
+      return { city, stateAbbr };
     }
   }
   return undefined;
 };
 
-export const getAllCities = (): { city: CityInfo; stateAbbreviation: string }[] => {
-  const allCities: { city: CityInfo; stateAbbreviation: string }[] = [];
-  for (const [stateAbbreviation, cities] of Object.entries(citiesByState)) {
-    cities.forEach(city => {
-      allCities.push({ city, stateAbbreviation });
-    });
+export const getAllCitySlugs = (): string[] => {
+  const slugs: string[] = [];
+  for (const cities of Object.values(citiesByState)) {
+    for (const city of cities) {
+      slugs.push(city.slug);
+    }
   }
-  return allCities;
+  return slugs;
 };
