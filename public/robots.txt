@@ -1,8 +1,10 @@
 User-agent: Googlebot
 Allow: /
+Crawl-delay: 1
 
 User-agent: Bingbot
 Allow: /
+Crawl-delay: 2
 
 User-agent: Twitterbot
 Allow: /
@@ -12,3 +14,16 @@ Allow: /
 
 User-agent: *
 Allow: /
+Crawl-delay: 5
+
+# Sitemap
+Sitemap: https://mercadolivredeenergia.pagin.com.br/sitemap.xml
+
+# Disallow admin or private paths
+Disallow: /api/
+Disallow: /_/
+Disallow: /admin/
+
+# Allow all content pages
+Allow: /mercado-livre-de-energia-*
+Allow: /sitemap
