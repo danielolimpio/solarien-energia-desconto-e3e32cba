@@ -1,8 +1,6 @@
 import { Sun, MapPin, Phone, Clock, Zap, Mail } from "lucide-react";
-
-const states = [
-  "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"
-];
+import { Link } from "react-router-dom";
+import { brazilianStates } from "@/data/states";
 
 const services = [
   "Mercado Livre de Energia",
@@ -103,7 +101,7 @@ const Footer = () => {
           {/* Services */}
           <div>
             <h4 className="font-display text-lg font-semibold text-primary-foreground mb-6">Serviços</h4>
-            <ul className="space-y-3 mb-8">
+            <ul className="space-y-3">
               {services.map((service, index) => (
                 <li key={index} className="flex items-center gap-2 text-sm">
                   <Zap className="w-4 h-4 text-primary" />
@@ -111,18 +109,25 @@ const Footer = () => {
                 </li>
               ))}
             </ul>
+          </div>
+        </div>
 
-            <h4 className="font-display text-lg font-semibold text-primary-foreground mb-4">Estados Atendidos</h4>
-            <div className="flex flex-wrap gap-1">
-              {states.map((state) => (
-                <span 
-                  key={state} 
-                  className="text-xs bg-primary/10 text-primary px-2 py-1 rounded"
-                >
-                  {state}
-                </span>
-              ))}
-            </div>
+        {/* Estados Atendidos - Seção Centralizada */}
+        <div className="mb-12">
+          <h4 className="font-display text-xl font-semibold text-primary-foreground text-center mb-8">
+            Estados Atendidos
+          </h4>
+          <div className="flex flex-wrap justify-center gap-3 max-w-5xl mx-auto">
+            {brazilianStates.map((state) => (
+              <Link 
+                key={state.abbreviation}
+                to={`/${state.slug}`}
+                className="inline-flex items-center gap-2 text-sm bg-primary/10 text-primary px-4 py-2 rounded-full hover:bg-primary/20 transition-colors border border-primary/20 hover:border-primary/40"
+              >
+                <MapPin className="w-3 h-3" />
+                {state.name} ({state.abbreviation})
+              </Link>
+            ))}
           </div>
         </div>
 
