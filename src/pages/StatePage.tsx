@@ -309,57 +309,75 @@ const StatePage = () => {
 
           <SectionDivider />
 
-          {/* Cities Section */}
+          {/* Municipalities Badges Section */}
           <section className="py-20 bg-card/50">
             <div className="container mx-auto px-4">
               <h2 className="font-display text-2xl md:text-3xl font-bold text-center mb-4">
-                Cidades Atendidas {state.preposition}{" "}
-                <span className="text-gradient">{state.name}</span>
+                Mercado Livre de Energia nos Principais Municípios{" "}
+                <span className="text-gradient">{state.preposition} {state.name}</span>
               </h2>
-              <p className="text-center text-muted-foreground mb-10 max-w-2xl mx-auto">
-                O Mercado Livre de Energia está disponível em todas as principais cidades {state.preposition} {state.name}. 
-                Confira a capital e os principais municípios atendidos:
+              <p className="text-center text-muted-foreground mb-10 max-w-3xl mx-auto">
+                Atendimento especializado em energia renovável para empresas, comércios e residências 
+                em todo o estado. Confira as cidades com maior demanda por economia de energia:
               </p>
               
               <div className="max-w-5xl mx-auto">
-                {/* Capital Highlight */}
-                {getCitiesByState(state.abbreviation).filter(c => c.isCapital).map((city) => (
-                  <Link key={city.slug} to={`/${city.slug}`} className="mb-8 text-center block">
-                    <div className="inline-flex items-center gap-3 bg-gradient-to-r from-primary/10 via-secondary/10 to-accent/10 px-8 py-4 rounded-2xl border border-primary/20 hover:border-primary/40 transition-all">
-                      <div className="w-10 h-10 rounded-full bg-gradient-solar flex items-center justify-center">
-                        <MapPin className="w-5 h-5 text-white" />
+                {/* Capital Highlight - Special Badge */}
+                {getCitiesByState(state.abbreviation).filter(c => c.isCapital).map((cityItem) => (
+                  <div key={cityItem.slug} className="mb-8 text-center">
+                    <Link 
+                      to={`/${cityItem.slug}`} 
+                      className="inline-flex items-center gap-3 bg-gradient-to-r from-primary/15 via-secondary/10 to-accent/15 px-6 py-3 rounded-full border-2 border-primary/30 hover:border-primary/60 hover:shadow-elegant transition-all group"
+                    >
+                      <div className="w-8 h-8 rounded-full bg-gradient-solar flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <MapPin className="w-4 h-4 text-white" />
                       </div>
                       <div className="text-left">
-                        <span className="text-xs uppercase tracking-wider text-primary font-semibold">Capital</span>
-                        <h3 className="font-display text-xl font-bold">{city.name}</h3>
+                        <span className="text-[10px] uppercase tracking-wider text-primary font-bold">Capital do Estado</span>
+                        <h3 className="font-display text-lg font-bold text-foreground">{cityItem.name}</h3>
                       </div>
-                    </div>
-                  </Link>
+                      <ArrowRight className="w-4 h-4 text-primary opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </Link>
+                  </div>
                 ))}
 
-                {/* Other Cities */}
-                <div className="flex flex-wrap justify-center gap-3">
+                {/* Municipality Badges Grid */}
+                <div className="flex flex-wrap justify-center gap-2 md:gap-3">
                   {getCitiesByState(state.abbreviation)
                     .filter(c => !c.isCapital)
-                    .map((city) => (
+                    .map((cityItem) => (
                       <Link
-                        key={city.slug}
-                        to={`/${city.slug}`}
-                        className="inline-flex items-center gap-2 bg-card px-4 py-2 rounded-full border border-border/50 hover:border-primary/30 hover:bg-primary/5 transition-all text-sm"
+                        key={cityItem.slug}
+                        to={`/${cityItem.slug}`}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 md:px-4 md:py-2 bg-background rounded-full border border-border hover:border-primary/40 hover:bg-primary/5 hover:shadow-sm transition-all text-xs md:text-sm font-medium text-foreground group"
+                        title={`Mercado Livre de Energia em ${cityItem.name} - ${state.abbreviation}`}
                       >
-                        <MapPin className="w-3 h-3 text-primary" />
-                        {city.name}
+                        <MapPin className="w-3 h-3 text-primary/70 group-hover:text-primary transition-colors" />
+                        <span>{cityItem.name}</span>
                       </Link>
                     ))}
                 </div>
 
-                <div className="text-center mt-10">
-                  <p className="text-muted-foreground mb-4">
-                    Sua cidade não está na lista? Não se preocupe! Atendemos todo o estado {state.preposition} {state.name}.
-                  </p>
-                  <WhatsAppButton>
-                    Consultar Disponibilidade na Minha Cidade
-                  </WhatsAppButton>
+                {/* SEO Helper Text */}
+                <div className="mt-10 p-6 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 rounded-2xl border border-border/50">
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                      <CheckCircle2 className="w-6 h-6 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="font-display text-lg font-semibold mb-2">
+                        Atendemos todos os municípios {state.preposition} {state.name}
+                      </h3>
+                      <p className="text-sm text-muted-foreground mb-4">
+                        A Solarien Energy oferece Mercado Livre de Energia para residências, comércios e indústrias 
+                        em todas as cidades {state.preposition} {state.name}. Clique no seu município para ver 
+                        informações específicas sobre economia de energia na sua região.
+                      </p>
+                      <WhatsAppButton size="sm">
+                        Consultar minha cidade
+                      </WhatsAppButton>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
