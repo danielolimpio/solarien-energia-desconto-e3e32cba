@@ -5,8 +5,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import SectionDivider from "@/components/SectionDivider";
-import { getStateBySlug, brazilianStates } from "@/data/states";
-import { Link } from "react-router-dom";
+import { getStateBySlug } from "@/data/states";
+import { getCitiesByState } from "@/data/cities";
 
 const StatePage = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -309,26 +309,57 @@ const StatePage = () => {
 
           <SectionDivider />
 
-          {/* Other States */}
+          {/* Cities Section */}
           <section className="py-20 bg-card/50">
             <div className="container mx-auto px-4">
-              <h2 className="font-display text-2xl md:text-3xl font-bold text-center mb-8">
-                Mercado Livre de Energia em Outros Estados
+              <h2 className="font-display text-2xl md:text-3xl font-bold text-center mb-4">
+                Cidades Atendidas {state.preposition}{" "}
+                <span className="text-gradient">{state.name}</span>
               </h2>
+              <p className="text-center text-muted-foreground mb-10 max-w-2xl mx-auto">
+                O Mercado Livre de Energia está disponível em todas as principais cidades {state.preposition} {state.name}. 
+                Confira a capital e os principais municípios atendidos:
+              </p>
               
-              <div className="flex flex-wrap justify-center gap-3 max-w-5xl mx-auto">
-                {brazilianStates
-                  .filter((s) => s.abbreviation !== state.abbreviation)
-                  .map((s) => (
-                    <Link
-                      key={s.abbreviation}
-                      to={`/${s.slug}`}
-                      className="inline-flex items-center gap-2 bg-card px-4 py-2 rounded-full border border-border/50 hover:border-primary/30 hover:bg-primary/5 transition-all text-sm"
-                    >
-                      <MapPin className="w-3 h-3 text-primary" />
-                      {s.name} ({s.abbreviation})
-                    </Link>
-                  ))}
+              <div className="max-w-5xl mx-auto">
+                {/* Capital Highlight */}
+                {getCitiesByState(state.abbreviation).filter(c => c.isCapital).map((city) => (
+                  <div key={city.name} className="mb-8 text-center">
+                    <div className="inline-flex items-center gap-3 bg-gradient-to-r from-primary/10 via-secondary/10 to-accent/10 px-8 py-4 rounded-2xl border border-primary/20">
+                      <div className="w-10 h-10 rounded-full bg-gradient-solar flex items-center justify-center">
+                        <MapPin className="w-5 h-5 text-white" />
+                      </div>
+                      <div className="text-left">
+                        <span className="text-xs uppercase tracking-wider text-primary font-semibold">Capital</span>
+                        <h3 className="font-display text-xl font-bold">{city.name}</h3>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+
+                {/* Other Cities */}
+                <div className="flex flex-wrap justify-center gap-3">
+                  {getCitiesByState(state.abbreviation)
+                    .filter(c => !c.isCapital)
+                    .map((city) => (
+                      <div
+                        key={city.name}
+                        className="inline-flex items-center gap-2 bg-card px-4 py-2 rounded-full border border-border/50 hover:border-primary/30 hover:bg-primary/5 transition-all text-sm"
+                      >
+                        <MapPin className="w-3 h-3 text-primary" />
+                        {city.name}
+                      </div>
+                    ))}
+                </div>
+
+                <div className="text-center mt-10">
+                  <p className="text-muted-foreground mb-4">
+                    Sua cidade não está na lista? Não se preocupe! Atendemos todo o estado {state.preposition} {state.name}.
+                  </p>
+                  <WhatsAppButton>
+                    Consultar Disponibilidade na Minha Cidade
+                  </WhatsAppButton>
+                </div>
               </div>
             </div>
           </section>
