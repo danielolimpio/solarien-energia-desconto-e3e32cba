@@ -1,42 +1,54 @@
 import { useParams, Navigate, Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import { Sun, Zap, TrendingDown, Leaf, Building2, Home, Factory, MapPin, CheckCircle2, ArrowRight } from "lucide-react";
+import { Sun, Zap, TrendingDown, Leaf, Building2, Home, Factory, MapPin, CheckCircle2, ArrowRight, ChevronLeft } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import SectionDivider from "@/components/SectionDivider";
-import { getStateBySlug } from "@/data/states";
-import { getCitiesByState } from "@/data/cities";
+import { getCityBySlug, getCitiesByState } from "@/data/cities";
+import { brazilianStates } from "@/data/states";
 
-const StatePage = () => {
+const CityPage = () => {
   const { slug } = useParams<{ slug: string }>();
-  const state = slug ? getStateBySlug(slug) : undefined;
+  const result = slug ? getCityBySlug(slug) : undefined;
+
+  if (!result) {
+    return <Navigate to="/404" replace />;
+  }
+
+  const { city, stateAbbr } = result;
+  const state = brazilianStates.find((s) => s.abbreviation === stateAbbr);
 
   if (!state) {
     return <Navigate to="/404" replace />;
   }
 
-  const pageTitle = `Mercado Livre de Energia ${state.preposition} ${state.name}`;
-  const pageDescription = `Economize até 45% na conta de luz ${state.preposition} ${state.name} com o Mercado Livre de Energia. Energia renovável para residências, comércios e indústrias. Simulação gratuita!`;
+  const pageTitle = `Mercado Livre de Energia em ${city.name} - ${stateAbbr}`;
+  const pageDescription = `Economize até 45% na conta de luz em ${city.name}, ${state.name} com o Mercado Livre de Energia. Energia renovável para residências, comércios e indústrias. Simulação gratuita!`;
+
+  // Get other cities in the same state for related links
+  const otherCities = getCitiesByState(stateAbbr)
+    .filter((c) => c.slug !== city.slug)
+    .slice(0, 12);
 
   return (
     <>
       <Helmet>
         <title>{pageTitle} | Economize até 45% | Solarien Energy</title>
         <meta name="description" content={pageDescription} />
-        <meta 
-          name="keywords" 
-          content={`mercado livre de energia ${state.name}, energia solar ${state.name}, economia energia ${state.abbreviation}, energia renovável ${state.name}, desconto energia ${state.abbreviation}`} 
+        <meta
+          name="keywords"
+          content={`mercado livre de energia ${city.name}, energia solar ${city.name}, economia energia ${city.name} ${stateAbbr}, energia renovável ${city.name}, desconto energia ${city.name}`}
         />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href={`https://mercadolivredeenergia.pagin.com.br/${state.slug}`} />
-        
+        <link rel="canonical" href={`https://mercadolivredeenergia.pagin.com.br/${city.slug}`} />
+
         <meta property="og:title" content={`${pageTitle} | Economize até 45%`} />
         <meta property="og:description" content={pageDescription} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={`https://mercadolivredeenergia.pagin.com.br/${state.slug}`} />
+        <meta property="og:url" content={`https://mercadolivredeenergia.pagin.com.br/${city.slug}`} />
         <meta property="og:locale" content="pt_BR" />
-        
+
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={`${pageTitle} | Economize até 45%`} />
         <meta name="twitter:description" content={pageDescription} />
@@ -45,16 +57,20 @@ const StatePage = () => {
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "LocalBusiness",
-            "name": `Mercado Livre de Energia - ${state.name}`,
+            "name": `Mercado Livre de Energia - ${city.name}`,
             "description": pageDescription,
-            "url": `https://mercadolivredeenergia.pagin.com.br/${state.slug}`,
+            "url": `https://mercadolivredeenergia.pagin.com.br/${city.slug}`,
             "telephone": "+55-12-98251-9116",
             "areaServed": {
-              "@type": "State",
-              "name": state.name,
+              "@type": "City",
+              "name": city.name,
               "containedInPlace": {
-                "@type": "Country",
-                "name": "Brasil"
+                "@type": "State",
+                "name": state.name,
+                "containedInPlace": {
+                  "@type": "Country",
+                  "name": "Brasil"
+                }
               }
             },
             "serviceType": ["Mercado Livre de Energia", "Energia por Assinatura", "Gestão de Energia"]
@@ -64,34 +80,54 @@ const StatePage = () => {
 
       <div className="min-h-screen">
         <Header />
-        
+
         <main>
+          {/* Breadcrumb */}
+          <section className="pt-24 pb-4">
+            <div className="container mx-auto px-4">
+              <nav className="flex items-center gap-2 text-sm text-muted-foreground">
+                <Link to="/" className="hover:text-primary transition-colors">
+                  Início
+                </Link>
+                <ChevronLeft className="w-4 h-4 rotate-180" />
+                <Link to={`/${state.slug}`} className="hover:text-primary transition-colors">
+                  {state.name}
+                </Link>
+                <ChevronLeft className="w-4 h-4 rotate-180" />
+                <span className="text-foreground font-medium">{city.name}</span>
+              </nav>
+            </div>
+          </section>
+
           {/* Hero Section */}
-          <section className="relative pt-32 pb-20 overflow-hidden">
+          <section className="relative pb-20 overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5" />
             <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl" />
             <div className="absolute bottom-10 right-10 w-96 h-96 bg-secondary/10 rounded-full blur-3xl" />
-            
+
             <div className="container mx-auto px-4 relative z-10">
               <div className="max-w-4xl mx-auto text-center">
                 <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full mb-6">
                   <MapPin className="w-4 h-4" />
-                  <span className="font-medium">{state.name} ({state.abbreviation})</span>
+                  <span className="font-medium">
+                    {city.name} - {stateAbbr}
+                    {city.isCapital && <span className="ml-2 text-xs bg-primary/20 px-2 py-0.5 rounded-full">Capital</span>}
+                  </span>
                 </div>
-                
+
                 <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
-                  Mercado Livre de Energia{" "}
-                  <span className="text-gradient">{state.preposition} {state.name}</span>
+                  Mercado Livre de Energia em{" "}
+                  <span className="text-gradient">{city.name}</span>
                 </h1>
-                
+
                 <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
-                  Descubra como empresas e residências {state.preposition} {state.name} estão economizando 
-                  até <strong className="text-primary">45% na conta de luz</strong> com o Mercado Livre de Energia 
+                  Descubra como empresas e residências em <strong>{city.name}</strong> estão economizando
+                  até <strong className="text-primary">45% na conta de luz</strong> com o Mercado Livre de Energia
                   e a <strong>Solarien Energy</strong>.
                 </p>
-                
+
                 <WhatsAppButton size="lg" className="shadow-elegant">
-                  Simular Economia {state.preposition} {state.name}
+                  Simular Economia em {city.name}
                 </WhatsAppButton>
               </div>
             </div>
@@ -99,27 +135,35 @@ const StatePage = () => {
 
           <SectionDivider />
 
-          {/* About State Section */}
+          {/* About City Section */}
           <section className="py-20 bg-card/50">
             <div className="container mx-auto px-4">
               <div className="max-w-4xl mx-auto">
                 <h2 className="font-display text-3xl md:text-4xl font-bold text-center mb-8">
-                  O Mercado Livre de Energia {state.preposition}{" "}
-                  <span className="text-gradient">{state.name}</span>
+                  O Mercado Livre de Energia em{" "}
+                  <span className="text-gradient">{city.name}</span>
                 </h2>
-                
+
                 <div className="prose prose-lg max-w-none text-muted-foreground space-y-6">
                   <p>
-                    O estado de <strong>{state.name}</strong> está na vanguarda da transição energética brasileira. 
-                    Com o Mercado Livre de Energia, consumidores de todo o estado podem escolher de quem comprar energia, 
-                    negociando diretamente com geradores e comercializadores para obter as melhores condições.
+                    <strong>{city.name}</strong>, localizada no estado de <strong>{state.name}</strong>, está na vanguarda
+                    da transição energética brasileira. Com o Mercado Livre de Energia, consumidores de toda a cidade
+                    podem escolher de quem comprar energia, negociando diretamente com geradores e comercializadores
+                    para obter as melhores condições.
                   </p>
-                  
+
                   <p>
                     A <a href="https://solarien.com.br" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-semibold">
-                    Solarien Energy</a> atua {state.preposition} {state.name} oferecendo soluções completas para 
-                    migração ao Mercado Livre de Energia, com economia garantida de até 45% na conta de luz 
+                      Solarien Energy</a> atua em {city.name} oferecendo soluções completas para
+                    migração ao Mercado Livre de Energia, com economia garantida de até 45% na conta de luz
                     e energia 100% renovável.
+                  </p>
+
+                  <p>
+                    Seja você um <strong>consumidor residencial</strong>, <strong>comerciante</strong> ou
+                    <strong> industrial</strong> em {city.name}, a Solarien Energy pode ajudar sua empresa ou
+                    residência a reduzir significativamente os custos com energia elétrica, contribuindo
+                    também para um futuro mais sustentável.
                   </p>
                 </div>
 
@@ -128,7 +172,7 @@ const StatePage = () => {
                     <Home className="w-12 h-12 text-primary mx-auto mb-4" />
                     <h3 className="font-display text-lg font-semibold mb-2">Residencial</h3>
                     <p className="text-sm text-muted-foreground">
-                      Economia para sua casa {state.preposition} {state.name}
+                      Economia para sua casa em {city.name}
                     </p>
                   </div>
                   <div className="bg-card p-6 rounded-2xl border border-border/50 text-center">
@@ -149,7 +193,7 @@ const StatePage = () => {
 
                 <div className="text-center mt-10">
                   <WhatsAppButton>
-                    Falar com Especialista {state.preposition} {state.name}
+                    Falar com Especialista em {city.name}
                   </WhatsAppButton>
                 </div>
               </div>
@@ -165,7 +209,7 @@ const StatePage = () => {
                 Vantagens do Mercado Livre de Energia
               </h2>
               <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-                Veja por que milhares de consumidores {state.preposition} {state.name} estão migrando para o Mercado Livre
+                Veja por que milhares de consumidores em {city.name} estão migrando para o Mercado Livre
               </p>
 
               <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
@@ -175,7 +219,7 @@ const StatePage = () => {
                   </div>
                   <h3 className="font-display text-lg font-semibold mb-2">Economia de até 45%</h3>
                   <p className="text-sm text-muted-foreground">
-                    Reduza drasticamente seus custos com energia {state.preposition} {state.name}
+                    Reduza drasticamente seus custos com energia em {city.name}
                   </p>
                 </div>
 
@@ -185,7 +229,7 @@ const StatePage = () => {
                   </div>
                   <h3 className="font-display text-lg font-semibold mb-2">Energia 100% Renovável</h3>
                   <p className="text-sm text-muted-foreground">
-                    Contribua para um {state.name} mais sustentável
+                    Contribua para um {city.name} mais sustentável
                   </p>
                 </div>
 
@@ -218,7 +262,7 @@ const StatePage = () => {
           <section className="py-20 bg-card/50">
             <div className="container mx-auto px-4">
               <h2 className="font-display text-3xl md:text-4xl font-bold text-center mb-4">
-                Como Funciona {state.preposition} {state.name}
+                Como Funciona em {city.name}
               </h2>
               <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
                 Em apenas 4 passos simples você começa a economizar
@@ -266,7 +310,7 @@ const StatePage = () => {
                       <span className="text-gradient">Solarien Energy</span>?
                     </h2>
                     <p className="text-muted-foreground max-w-2xl mx-auto">
-                      A Solarien Energy é sua parceira ideal para migrar ao Mercado Livre de Energia {state.preposition} {state.name}
+                      A Solarien Energy é sua parceira ideal para migrar ao Mercado Livre de Energia em {city.name}
                     </p>
                   </div>
 
@@ -277,13 +321,13 @@ const StatePage = () => {
                       "Atendimento 24/7",
                       "Portabilidade gratuita",
                       "Sem taxa de adesão",
-                      "Cobertura em todo {state.name}",
+                      `Cobertura em ${city.name}`,
                       "Processo 100% digital",
                       "Suporte especializado",
                     ].map((item, index) => (
                       <div key={index} className="flex items-center gap-3 bg-card/50 p-4 rounded-xl">
                         <CheckCircle2 className="w-5 h-5 text-primary shrink-0" />
-                        <span className="text-sm font-medium">{item.replace("{state.name}", state.name)}</span>
+                        <span className="text-sm font-medium">{item}</span>
                       </div>
                     ))}
                   </div>
@@ -292,9 +336,9 @@ const StatePage = () => {
                     <WhatsAppButton size="lg">
                       Falar com a Solarien
                     </WhatsAppButton>
-                    <a 
-                      href="https://solarien.com.br" 
-                      target="_blank" 
+                    <a
+                      href="https://solarien.com.br"
+                      target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 text-primary hover:underline font-semibold"
                     >
@@ -309,75 +353,65 @@ const StatePage = () => {
 
           <SectionDivider />
 
-          {/* Cities Section */}
-          <section className="py-20 bg-card/50">
-            <div className="container mx-auto px-4">
-              <h2 className="font-display text-2xl md:text-3xl font-bold text-center mb-4">
-                Cidades Atendidas {state.preposition}{" "}
-                <span className="text-gradient">{state.name}</span>
-              </h2>
-              <p className="text-center text-muted-foreground mb-10 max-w-2xl mx-auto">
-                O Mercado Livre de Energia está disponível em todas as principais cidades {state.preposition} {state.name}. 
-                Confira a capital e os principais municípios atendidos:
-              </p>
-              
-              <div className="max-w-5xl mx-auto">
-                {/* Capital Highlight */}
-                {getCitiesByState(state.abbreviation).filter(c => c.isCapital).map((city) => (
-                  <Link key={city.slug} to={`/${city.slug}`} className="mb-8 text-center block">
-                    <div className="inline-flex items-center gap-3 bg-gradient-to-r from-primary/10 via-secondary/10 to-accent/10 px-8 py-4 rounded-2xl border border-primary/20 hover:border-primary/40 transition-all">
-                      <div className="w-10 h-10 rounded-full bg-gradient-solar flex items-center justify-center">
-                        <MapPin className="w-5 h-5 text-white" />
-                      </div>
-                      <div className="text-left">
-                        <span className="text-xs uppercase tracking-wider text-primary font-semibold">Capital</span>
-                        <h3 className="font-display text-xl font-bold">{city.name}</h3>
-                      </div>
-                    </div>
-                  </Link>
-                ))}
+          {/* Other Cities in State */}
+          {otherCities.length > 0 && (
+            <section className="py-20 bg-card/50">
+              <div className="container mx-auto px-4">
+                <h2 className="font-display text-2xl md:text-3xl font-bold text-center mb-4">
+                  Outras Cidades Atendidas {state.preposition}{" "}
+                  <span className="text-gradient">{state.name}</span>
+                </h2>
+                <p className="text-center text-muted-foreground mb-10 max-w-2xl mx-auto">
+                  O Mercado Livre de Energia também está disponível em outras cidades {state.preposition} {state.name}
+                </p>
 
-                {/* Other Cities */}
-                <div className="flex flex-wrap justify-center gap-3">
-                  {getCitiesByState(state.abbreviation)
-                    .filter(c => !c.isCapital)
-                    .map((city) => (
-                      <Link
-                        key={city.slug}
-                        to={`/${city.slug}`}
-                        className="inline-flex items-center gap-2 bg-card px-4 py-2 rounded-full border border-border/50 hover:border-primary/30 hover:bg-primary/5 transition-all text-sm"
-                      >
-                        <MapPin className="w-3 h-3 text-primary" />
-                        {city.name}
-                      </Link>
-                    ))}
+                <div className="flex flex-wrap justify-center gap-3 max-w-5xl mx-auto">
+                  {otherCities.map((otherCity) => (
+                    <Link
+                      key={otherCity.slug}
+                      to={`/${otherCity.slug}`}
+                      className="inline-flex items-center gap-2 px-4 py-2 bg-card rounded-full border border-border/50 hover:border-primary/30 hover:bg-primary/5 transition-all text-sm font-medium"
+                    >
+                      <MapPin className="w-3 h-3 text-primary" />
+                      {otherCity.name}
+                      {otherCity.isCapital && (
+                        <span className="text-xs bg-primary/10 text-primary px-1.5 py-0.5 rounded-full">Capital</span>
+                      )}
+                    </Link>
+                  ))}
                 </div>
 
-                <div className="text-center mt-10">
-                  <p className="text-muted-foreground mb-4">
-                    Sua cidade não está na lista? Não se preocupe! Atendemos todo o estado {state.preposition} {state.name}.
-                  </p>
-                  <WhatsAppButton>
-                    Consultar Disponibilidade na Minha Cidade
-                  </WhatsAppButton>
+                <div className="text-center mt-8">
+                  <Link
+                    to={`/${state.slug}`}
+                    className="inline-flex items-center gap-2 text-primary hover:underline font-semibold"
+                  >
+                    Ver todas as cidades {state.preposition} {state.name}
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
                 </div>
               </div>
-            </div>
-          </section>
+            </section>
+          )}
+
+          <SectionDivider />
 
           {/* CTA Section */}
-          <section className="py-20 bg-gradient-to-br from-primary via-primary/90 to-secondary text-white">
-            <div className="container mx-auto px-4 text-center">
-              <Sun className="w-16 h-16 mx-auto mb-6 opacity-80" />
-              <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
-                Pronto para Economizar {state.preposition} {state.name}?
-              </h2>
-              <p className="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
-                Entre em contato agora e descubra quanto você pode economizar com o Mercado Livre de Energia
-              </p>
-              <WhatsAppButton size="lg" className="bg-white text-primary hover:bg-white/90">
-                Simular Minha Economia Agora
-              </WhatsAppButton>
+          <section className="py-20">
+            <div className="container mx-auto px-4">
+              <div className="max-w-4xl mx-auto text-center">
+                <h2 className="font-display text-3xl md:text-4xl font-bold mb-6">
+                  Comece a Economizar em{" "}
+                  <span className="text-gradient">{city.name}</span> Hoje!
+                </h2>
+                <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+                  Faça uma simulação gratuita e descubra quanto você pode economizar
+                  na conta de luz com o Mercado Livre de Energia em {city.name}.
+                </p>
+                <WhatsAppButton size="lg" className="shadow-elegant">
+                  Simular Minha Economia Agora
+                </WhatsAppButton>
+              </div>
             </div>
           </section>
         </main>
@@ -388,4 +422,4 @@ const StatePage = () => {
   );
 };
 
-export default StatePage;
+export default CityPage;
