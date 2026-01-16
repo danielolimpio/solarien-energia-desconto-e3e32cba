@@ -7,6 +7,13 @@ import { HelmetProvider } from "react-helmet-async";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import StatePage from "./pages/StatePage";
+import CityPage from "./pages/CityPage";
+import { getAllCitySlugs } from "./data/cities";
+import { brazilianStates } from "./data/states";
+
+// Get all valid slugs for routing
+const stateSlugs = brazilianStates.map(s => s.slug);
+const citySlugs = getAllCitySlugs();
 
 const queryClient = new QueryClient();
 
@@ -19,7 +26,12 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
-            <Route path="/:slug" element={<StatePage />} />
+            {stateSlugs.map(slug => (
+              <Route key={slug} path={`/${slug}`} element={<StatePage />} />
+            ))}
+            {citySlugs.map(slug => (
+              <Route key={slug} path={`/${slug}`} element={<CityPage />} />
+            ))}
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
