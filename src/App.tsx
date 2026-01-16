@@ -11,10 +11,6 @@ import CityPage from "./pages/CityPage";
 import { getAllCitySlugs } from "./data/cities";
 import { brazilianStates } from "./data/states";
 
-// Get all valid slugs for routing
-const stateSlugs = brazilianStates.map(s => s.slug);
-const citySlugs = getAllCitySlugs();
-
 const queryClient = new QueryClient();
 
 const App = () => (
@@ -24,12 +20,14 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <Routes>
+        <Routes>
             <Route path="/" element={<Index />} />
-            {stateSlugs.map(slug => (
-              <Route key={slug} path={`/${slug}`} element={<StatePage />} />
+            {/* State routes - must be before city routes for proper matching */}
+            {brazilianStates.map(state => (
+              <Route key={state.slug} path={`/${state.slug}`} element={<StatePage />} />
             ))}
-            {citySlugs.map(slug => (
+            {/* City routes */}
+            {getAllCitySlugs().map(slug => (
               <Route key={slug} path={`/${slug}`} element={<CityPage />} />
             ))}
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
