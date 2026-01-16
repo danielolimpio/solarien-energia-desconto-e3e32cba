@@ -6,10 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
-import StatePage from "./pages/StatePage";
-import CityPage from "./pages/CityPage";
-import { getAllCitySlugs } from "./data/cities";
-import { brazilianStates } from "./data/states";
+import SlugPage from "./pages/SlugPage";
 
 const queryClient = new QueryClient();
 
@@ -20,16 +17,10 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
-        <Routes>
+          <Routes>
             <Route path="/" element={<Index />} />
-            {/* State routes - must be before city routes for proper matching */}
-            {brazilianStates.map(state => (
-              <Route key={state.slug} path={`/${state.slug}`} element={<StatePage />} />
-            ))}
-            {/* City routes */}
-            {getAllCitySlugs().map(slug => (
-              <Route key={slug} path={`/${slug}`} element={<CityPage />} />
-            ))}
+            <Route path="/404" element={<NotFound />} />
+            <Route path="/:slug" element={<SlugPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
