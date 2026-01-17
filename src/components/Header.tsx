@@ -1,5 +1,5 @@
-import { Sun } from "lucide-react";
 import WhatsAppButton from "./WhatsAppButton";
+import logoSun from "@/assets/logo-sun.png";
 
 const Header = () => {
   return (
@@ -7,7 +7,11 @@ const Header = () => {
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         <a href="/" className="flex items-center gap-3 group">
           <div className="relative">
-            <Sun className="w-10 h-10 text-primary transition-transform group-hover:rotate-45 duration-500" strokeWidth={1.5} />
+            <img 
+              src={logoSun} 
+              alt="Mercado Livre de Energia" 
+              className="w-10 h-10 spin-logo"
+            />
             <div className="absolute inset-0 bg-primary/20 blur-xl rounded-full" />
           </div>
           <span className="font-display text-xl md:text-2xl font-bold text-foreground">
