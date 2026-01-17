@@ -10,7 +10,7 @@ const Header = () => {
             <img 
               src={logoSun} 
               alt="Mercado Livre de Energia" 
-              className="w-10 h-10 spin-logo"
+              className="w-10 h-10 flex-shrink-0 object-contain aspect-square spin-logo"
             />
             <div className="absolute inset-0 bg-primary/20 blur-xl rounded-full" />
           </div>
