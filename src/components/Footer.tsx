@@ -18,11 +18,11 @@ const Footer = () => {
           {/* Logo and Description */}
           <div className="lg:col-span-1">
             <a href="/" className="flex items-center gap-3 mb-6">
-              <div className="relative">
+              <div className="relative w-10 h-10 flex-shrink-0">
                 <img 
                   src={logoSun} 
                   alt="Mercado Livre de Energia" 
-                  className="w-10 h-10 spin-logo"
+                  className="w-10 h-10 spin-logo object-contain aspect-square"
                 />
               </div>
               <span className="font-display text-2xl font-black tracking-tight text-primary-foreground drop-shadow-sm">
