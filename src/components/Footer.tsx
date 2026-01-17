@@ -1,6 +1,7 @@
-import { Sun, MapPin, Phone, Clock, Zap, Mail } from "lucide-react";
+import { MapPin, Phone, Clock, Zap, Mail } from "lucide-react";
 import { Link } from "react-router-dom";
 import { brazilianStates } from "@/data/states";
+import logoSun from "@/assets/logo-sun.png";
 
 const services = [
   "Mercado Livre de Energia",
@@ -18,7 +19,11 @@ const Footer = () => {
           <div className="lg:col-span-1">
             <a href="/" className="flex items-center gap-3 mb-6">
               <div className="relative">
-                <Sun className="w-10 h-10 text-primary" strokeWidth={1.5} />
+                <img 
+                  src={logoSun} 
+                  alt="Mercado Livre de Energia" 
+                  className="w-10 h-10 spin-logo"
+                />
               </div>
               <span className="font-display text-xl font-bold text-primary-foreground">
                 Mercado Livre de <span className="text-primary">Energia</span>
