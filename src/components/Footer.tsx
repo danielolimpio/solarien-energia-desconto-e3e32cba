@@ -25,8 +25,8 @@ const Footer = () => {
                   className="w-10 h-10 spin-logo"
                 />
               </div>
-              <span className="font-display text-xl font-bold text-primary-foreground">
-                Mercado Livre de <span className="text-primary">Energia</span>
+              <span className="font-display text-2xl font-black tracking-tight text-primary-foreground drop-shadow-sm">
+                Mercado Livre de <span className="text-primary font-black">Energia</span>
               </span>
             </a>
             <p className="text-sm leading-relaxed mb-6">

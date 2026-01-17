@@ -14,8 +14,8 @@ const Header = () => {
             />
             <div className="absolute inset-0 bg-primary/20 blur-xl rounded-full" />
           </div>
-          <span className="font-display text-xl md:text-2xl font-bold text-foreground">
-            Mercado Livre de <span className="text-gradient-solar">Energia</span>
+          <span className="font-display text-2xl md:text-3xl font-black tracking-tight text-foreground drop-shadow-sm">
+            Mercado Livre de <span className="text-gradient-solar font-black">Energia</span>
           </span>
         </a>
         
