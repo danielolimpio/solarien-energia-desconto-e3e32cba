@@ -1,13 +1,17 @@
 import { Sun, Zap, Leaf, TrendingDown } from "lucide-react";
 import WhatsAppButton from "./WhatsAppButton";
+import heroBg from "@/assets/hero-solar-bg.webp";
 
 const Hero = () => {
   return (
     <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
-      {/* Background decorations */}
-      <div className="absolute inset-0 bg-gradient-to-b from-solar-50/50 via-background to-background" />
-      <div className="absolute top-20 right-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-secondary/5 rounded-full blur-3xl" />
+      {/* Background image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${heroBg})` }}
+      />
+      {/* Dark overlay for contrast */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background/85 via-background/80 to-background" />
       
       {/* Floating elements */}
       <div className="absolute top-32 left-[10%] floating-animation">
