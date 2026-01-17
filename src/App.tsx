@@ -8,6 +8,9 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import SlugPage from "./pages/SlugPage";
 import SitemapPage from "./pages/SitemapPage";
+import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
+import TermsOfUsePage from "./pages/TermsOfUsePage";
+import CookiePolicyPage from "./pages/CookiePolicyPage";
 import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
@@ -23,6 +26,9 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/sitemap" element={<SitemapPage />} />
+            <Route path="/politica-de-privacidade" element={<PrivacyPolicyPage />} />
+            <Route path="/termos-de-uso" element={<TermsOfUsePage />} />
+            <Route path="/politica-de-cookies" element={<CookiePolicyPage />} />
             <Route path="/404" element={<NotFound />} />
             <Route path="/:slug" element={<SlugPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

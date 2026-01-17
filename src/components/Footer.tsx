@@ -136,6 +136,36 @@ const Footer = () => {
           </div>
         </div>
 
+        {/* Legal Links */}
+        <div className="mb-8">
+          <div className="flex flex-wrap justify-center gap-6 text-sm">
+            <Link 
+              to="/politica-de-privacidade" 
+              className="text-primary-foreground/70 hover:text-primary transition-colors"
+            >
+              Política de Privacidade
+            </Link>
+            <Link 
+              to="/termos-de-uso" 
+              className="text-primary-foreground/70 hover:text-primary transition-colors"
+            >
+              Termos de Uso
+            </Link>
+            <Link 
+              to="/politica-de-cookies" 
+              className="text-primary-foreground/70 hover:text-primary transition-colors"
+            >
+              Política de Cookies
+            </Link>
+            <Link 
+              to="/sitemap" 
+              className="text-primary-foreground/70 hover:text-primary transition-colors"
+            >
+              Sitemap
+            </Link>
+          </div>
+        </div>
+
         {/* Divider */}
         <div className="h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent mb-8" />
 
