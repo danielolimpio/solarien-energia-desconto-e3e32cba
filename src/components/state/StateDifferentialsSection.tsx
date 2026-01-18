@@ -33,8 +33,8 @@ const StateDifferentialsSection = ({ state, content }: StateDifferentialsSection
                     key={index} 
                     className="flex items-start gap-4 bg-card/80 backdrop-blur-sm p-5 rounded-xl border border-border/50 hover:border-primary/30 hover:shadow-soft transition-all"
                   >
-                    <div className="w-12 h-12 rounded-xl bg-gradient-solar flex items-center justify-center shrink-0 shadow-sm">
-                      <Icon className="w-6 h-6 text-white" />
+                    <div className="w-12 h-12 rounded-xl bg-primary flex items-center justify-center shrink-0 shadow-lg">
+                      <Icon className="w-6 h-6 text-primary-foreground" />
                     </div>
                     <div>
                       <h3 className="font-display font-semibold mb-1">{item.title}</h3>

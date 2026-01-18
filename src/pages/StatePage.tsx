@@ -45,12 +45,12 @@ const StatePage = () => {
           content={`mercado livre de energia ${state.name}, energia solar ${state.name}, economia energia ${state.abbreviation}, energia renovável ${state.name}, desconto energia ${state.abbreviation}`} 
         />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href={`https://mercadolivredeenergia.pagin.com.br/${state.slug}`} />
+        <link rel="canonical" href={`https://solarien-energia-desconto.lovable.app/${state.slug}`} />
         
         <meta property="og:title" content={`${pageTitle} | Economize até 45%`} />
         <meta property="og:description" content={pageDescription} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={`https://mercadolivredeenergia.pagin.com.br/${state.slug}`} />
+        <meta property="og:url" content={`https://solarien-energia-desconto.lovable.app/${state.slug}`} />
         <meta property="og:locale" content="pt_BR" />
         
         <meta name="twitter:card" content="summary_large_image" />
@@ -63,7 +63,7 @@ const StatePage = () => {
             "@type": "LocalBusiness",
             "name": `Mercado Livre de Energia - ${state.name}`,
             "description": pageDescription,
-            "url": `https://mercadolivredeenergia.pagin.com.br/${state.slug}`,
+            "url": `https://solarien-energia-desconto.lovable.app/${state.slug}`,
             "telephone": "+55-12-98251-9116",
             "areaServed": {
               "@type": "State",
@@ -159,8 +159,8 @@ const StatePage = () => {
                       to={`/${cityItem.slug}`} 
                       className="inline-flex items-center gap-3 bg-gradient-to-r from-primary/15 via-secondary/10 to-accent/15 px-6 py-3 rounded-full border-2 border-primary/30 hover:border-primary/60 hover:shadow-elegant transition-all group"
                     >
-                      <div className="w-8 h-8 rounded-full bg-gradient-solar flex items-center justify-center group-hover:scale-110 transition-transform">
-                        <MapPin className="w-4 h-4 text-white" />
+                      <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center group-hover:scale-110 transition-transform">
+                        <MapPin className="w-4 h-4 text-primary-foreground" />
                       </div>
                       <div className="text-left">
                         <span className="text-[10px] uppercase tracking-wider text-primary font-bold">Capital do Estado</span>
