@@ -22,9 +22,18 @@ const StateHeroSection = ({ state, content }: StateHeroSectionProps) => {
             <span className="font-medium">{state.name} ({state.abbreviation})</span>
           </div>
           
+          {/* H1 Otimizado para SEO */}
           <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6">
-            Mercado Livre de Energia{" "}
-            <span className="text-gradient">{state.preposition} {state.name}</span>
+            {content.h1 ? (
+              <span dangerouslySetInnerHTML={{ 
+                __html: content.h1.replace(state.name, `<span class="text-gradient">${state.name}</span>`) 
+              }} />
+            ) : (
+              <>
+                Mercado Livre de Energia{" "}
+                <span className="text-gradient">{state.preposition} {state.name}</span>
+              </>
+            )}
           </h1>
           
           {/* Hook Premium */}
@@ -38,10 +47,15 @@ const StateHeroSection = ({ state, content }: StateHeroSectionProps) => {
             </p>
           </div>
           
+          {/* Subtítulo Hero */}
           <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
-            Descubra como empresas e residências {state.preposition} {state.name} estão economizando 
-            até <strong className="text-primary">45% na conta de luz</strong> com o Mercado Livre de Energia 
-            e a <strong>Solarien Energy</strong>.
+            {content.heroSubtitle || (
+              <>
+                Descubra como empresas e residências {state.preposition} {state.name} estão economizando 
+                até <strong className="text-primary">45% na conta de luz</strong> com o Mercado Livre de Energia 
+                e a <strong>Solarien Energy</strong>.
+              </>
+            )}
           </p>
           
           <WhatsAppButton size="lg" className="shadow-elegant">

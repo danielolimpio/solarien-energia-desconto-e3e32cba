@@ -11,8 +11,11 @@ export type {
 
 import type { StateContent } from './stateContents/types';
 
-// Dados específicos de cada estado
-export const stateContents: Record<string, StateContent> = {
+// Import optimized content from modular files
+import { optimizedStateContents } from './stateContents';
+
+// Legacy content for states not yet migrated to new structure
+const legacyStateContents: Record<string, StateContent> = {
   AC: {
     hook: "No coração da Amazônia, o Acre lidera a transformação energética do Norte brasileiro. Sua empresa pode economizar até 45% na conta de luz.",
     introduction: `O Acre, com sua rica biodiversidade e posição estratégica na Amazônia Ocidental, está abraçando uma nova era de eficiência energética. Empresas e residências em Rio Branco, Cruzeiro do Sul e outras cidades acreanas estão descobrindo os benefícios do Mercado Livre de Energia.
@@ -4494,6 +4497,12 @@ A Solarien Energy atua em todo o estado, oferecendo soluções para agronegócio
     economicProfile: "Com agronegócio, pecuária e logística, TO depende de energia competitiva.",
     energyTip: "Dica: Fazendas com irrigação economizam em média R$ 25.000/mês!"
   }
+};
+
+// Merge optimized content with legacy content (optimized takes priority)
+export const stateContents: Record<string, StateContent> = {
+  ...legacyStateContents,
+  ...optimizedStateContents,
 };
 
 export const getStateContent = (stateAbbreviation: string): StateContent | undefined => {
