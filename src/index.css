@@ -136,6 +136,10 @@
     background-clip: text;
   }
 
+  .bg-gradient-solar {
+    background: var(--gradient-solar);
+  }
+
   .btn-solar {
     background: var(--gradient-solar);
     color: white;

@@ -118,6 +118,11 @@ export default {
         soft: "var(--shadow-soft)",
         card: "var(--shadow-card)",
         glow: "var(--shadow-glow)",
+        elegant: "0 10px 30px -10px hsl(220 25% 15% / 0.15)",
+      },
+      backgroundImage: {
+        'gradient-solar': 'linear-gradient(135deg, hsl(38 92% 50%), hsl(28 95% 55%), hsl(45 95% 60%))',
+        'gradient-green': 'linear-gradient(135deg, hsl(142 72% 29%), hsl(152 65% 35%), hsl(162 60% 40%))',
       },
     },
   },

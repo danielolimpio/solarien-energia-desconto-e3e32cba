@@ -43,7 +43,7 @@ const StateHowItWorksSection = ({ state, content }: StateHowItWorksSectionProps)
                   <div key={index} className="relative">
                     <div className="bg-card p-6 rounded-2xl border border-border/50 hover:border-primary/30 hover:shadow-elegant transition-all h-full">
                       {/* Step Number Badge */}
-                      <div className="relative z-10 w-14 h-14 rounded-full bg-gradient-solar flex items-center justify-center text-white font-bold text-xl mb-4 mx-auto shadow-glow">
+                      <div className="relative z-10 w-14 h-14 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-bold text-xl mb-4 mx-auto shadow-lg">
                         {index + 1}
                       </div>
                       

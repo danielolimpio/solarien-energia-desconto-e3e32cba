@@ -42,8 +42,8 @@ const StateOpportunitySection = ({ state, content }: StateOpportunitySectionProp
                   key={index} 
                   className="bg-card rounded-2xl p-8 border border-border/50 text-center hover:shadow-elegant transition-all group"
                 >
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-solar flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform shadow-glow">
-                    <Icon className="w-8 h-8 text-white" />
+                  <div className="w-16 h-16 rounded-2xl bg-primary flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform shadow-lg">
+                    <Icon className="w-8 h-8 text-primary-foreground" />
                   </div>
                   <div className="font-display text-4xl md:text-5xl font-bold text-primary mb-2">
                     {stat.value}
