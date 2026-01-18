@@ -22,6 +22,10 @@ import StateDifferentialsSection from "@/components/state/StateDifferentialsSect
 import StateWhyMigrateSection from "@/components/state/StateWhyMigrateSection";
 import StateTestimonialsSection from "@/components/state/StateTestimonialsSection";
 import StateFAQSection from "@/components/state/StateFAQSection";
+import StateTariffComparisonSection from "@/components/state/StateTariffComparisonSection";
+import StateSolarPotentialSection from "@/components/state/StateSolarPotentialSection";
+import StateWhoCanMigrateSection from "@/components/state/StateWhoCanMigrateSection";
+import StateRegulatorySection from "@/components/state/StateRegulatorySection";
 
 const StatePage = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -32,50 +36,66 @@ const StatePage = () => {
     return <Navigate to="/404" replace />;
   }
 
-  const pageTitle = `Mercado Livre de Energia ${state.preposition} ${state.name}`;
-  const pageDescription = `Economize até 45% na conta de luz ${state.preposition} ${state.name} com o Mercado Livre de Energia. Energia renovável para residências, comércios e indústrias. Simulação gratuita!`;
+  // Use optimized meta if available, fallback to defaults
+  const pageTitle = content?.metaTitle || `Mercado Livre de Energia ${state.preposition} ${state.name} | Economize até 45%`;
+  const pageDescription = content?.metaDescription || `Empresas ${state.preposition} ${state.name}: reduza sua conta de luz com o Mercado Livre de Energia. Simule grátis!`;
+  const pageKeywords = content?.keywords?.join(", ") || `mercado livre de energia ${state.name}, economia energia ${state.abbreviation}`;
+
+  // Generate FAQPage schema from content
+  const faqSchema = content?.faqs ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": content.faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  } : null;
 
   return (
     <>
       <Helmet>
-        <title>{pageTitle} | Economize até 45% | Solarien Energy</title>
+        <title>{pageTitle}</title>
         <meta name="description" content={pageDescription} />
-        <meta 
-          name="keywords" 
-          content={`mercado livre de energia ${state.name}, energia solar ${state.name}, economia energia ${state.abbreviation}, energia renovável ${state.name}, desconto energia ${state.abbreviation}`} 
-        />
+        <meta name="keywords" content={pageKeywords} />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href={`https://solarien-energia-desconto.lovable.app/${state.slug}`} />
         
-        <meta property="og:title" content={`${pageTitle} | Economize até 45%`} />
+        <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={pageDescription} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={`https://solarien-energia-desconto.lovable.app/${state.slug}`} />
         <meta property="og:locale" content="pt_BR" />
         
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={`${pageTitle} | Economize até 45%`} />
+        <meta name="twitter:title" content={pageTitle} />
         <meta name="twitter:description" content={pageDescription} />
 
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "LocalBusiness",
-            "name": `Mercado Livre de Energia - ${state.name}`,
+            "name": `Solarien Energy - Mercado Livre de Energia ${state.preposition} ${state.name}`,
             "description": pageDescription,
             "url": `https://solarien-energia-desconto.lovable.app/${state.slug}`,
             "telephone": "+55-12-98251-9116",
             "areaServed": {
               "@type": "State",
               "name": state.name,
-              "containedInPlace": {
-                "@type": "Country",
-                "name": "Brasil"
-              }
+              "containedInPlace": { "@type": "Country", "name": "Brasil" }
             },
-            "serviceType": ["Mercado Livre de Energia", "Energia por Assinatura", "Gestão de Energia"]
+            "serviceType": ["Mercado Livre de Energia", "Gestão de Energia", "Consultoria Energética"]
           })}
         </script>
+        
+        {faqSchema && (
+          <script type="application/ld+json">
+            {JSON.stringify(faqSchema)}
+          </script>
+        )}
       </Helmet>
 
       <div className="min-h-screen">
@@ -111,16 +131,22 @@ const StatePage = () => {
               <StateHowItWorksSection state={state} content={content} />
               <SectionDivider />
               
+              <StateWhoCanMigrateSection state={state} content={content} />
+              <SectionDivider />
+              
               <StateBenefitsSection state={state} content={content} />
               <SectionDivider />
               
-              <StateMarketComparisonSection state={state} content={content} />
+              <StateTariffComparisonSection state={state} content={content} />
               <SectionDivider />
               
-              <StateZeroCostSection state={state} content={content} />
+              <StateSolarPotentialSection state={state} content={content} />
               <SectionDivider />
               
               <StateOpportunitySection state={state} content={content} />
+              <SectionDivider />
+              
+              <StateZeroCostSection state={state} content={content} />
               <SectionDivider />
               
               <StateDocumentsSection state={state} content={content} />
@@ -136,6 +162,9 @@ const StatePage = () => {
               <SectionDivider />
               
               <StateFAQSection state={state} content={content} />
+              <SectionDivider />
+              
+              <StateRegulatorySection state={state} content={content} />
               <SectionDivider />
             </>
           )}
