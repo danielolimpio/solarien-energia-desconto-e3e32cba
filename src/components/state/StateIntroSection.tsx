@@ -14,8 +14,8 @@ const StateIntroSection = ({ state, content }: StateIntroSectionProps) => {
       <div className="container mx-auto px-4">
         <div className="max-w-5xl mx-auto">
           <h2 className="font-display text-3xl md:text-4xl font-bold text-center mb-8">
-            O Mercado Livre de Energia {state.preposition}{" "}
-            <span className="text-gradient">{state.name}</span>
+            {content.whatIs?.title || `O Mercado Livre de Energia ${state.preposition} `}
+            {!content.whatIs && <span className="text-gradient">{state.name}</span>}
           </h2>
           
           {/* Introduction Text with Premium Styling */}
@@ -31,8 +31,9 @@ const StateIntroSection = ({ state, content }: StateIntroSectionProps) => {
             </div>
             
             <div className="prose prose-lg max-w-none text-muted-foreground">
-              {content.introduction.split('\n\n').map((paragraph, index) => (
-                <p key={index} className="mb-4 last:mb-0 leading-relaxed">
+              {/* Use whatIs content if available, otherwise fall back to introduction */}
+              {(content.whatIs?.content || content.introduction).split('\n\n').map((paragraph, index) => (
+                <p key={index} className="mb-4 last:mb-0 leading-relaxed whitespace-pre-line">
                   {paragraph}
                 </p>
               ))}
