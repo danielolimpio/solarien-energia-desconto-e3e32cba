@@ -1,4 +1,4 @@
-import { TrendingUp, Lightbulb, DollarSign } from "lucide-react";
+import { TrendingUp, Lightbulb, DollarSign, Percent, Award, Zap, BarChart3, LucideIcon } from "lucide-react";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { StateInfo } from "@/data/states";
 import { StateContent } from "@/data/stateContent";
@@ -8,7 +8,18 @@ interface StateOpportunitySectionProps {
   content: StateContent;
 }
 
-const statIcons = [DollarSign, TrendingUp, Lightbulb];
+const getStatIcon = (label: string, value: string, index: number): LucideIcon => {
+  const labelLower = label.toLowerCase();
+  const valueLower = value.toLowerCase();
+  
+  if (labelLower.includes("tarifa") || valueLower.includes("r$")) return DollarSign;
+  if (labelLower.includes("economia") || valueLower.includes("%")) return Percent;
+  if (labelLower.includes("geração") || labelLower.includes("#") || valueLower.includes("#")) return Award;
+  if (labelLower.includes("potência") || labelLower.includes("energia")) return Zap;
+  
+  const defaultIcons: LucideIcon[] = [DollarSign, Percent, Award];
+  return defaultIcons[index % defaultIcons.length];
+};
 
 const StateOpportunitySection = ({ state, content }: StateOpportunitySectionProps) => {
   return (
@@ -25,7 +36,7 @@ const StateOpportunitySection = ({ state, content }: StateOpportunitySectionProp
           {/* Stats Grid */}
           <div className="grid md:grid-cols-3 gap-6 mb-12">
             {content.opportunity.stats.map((stat, index) => {
-              const Icon = statIcons[index % statIcons.length];
+              const Icon = getStatIcon(stat.label, stat.value, index);
               return (
                 <div 
                   key={index} 

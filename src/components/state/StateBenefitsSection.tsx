@@ -1,4 +1,4 @@
-import { TrendingDown, Leaf, Zap, Sun, Shield, Clock, Award, CheckCircle2 } from "lucide-react";
+import { TrendingDown, Leaf, Zap, Sun, Shield, Clock, Award, CheckCircle2, Factory, Building2, Palmtree, Ship, Truck, Mountain, Wheat, LucideIcon } from "lucide-react";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { StateInfo } from "@/data/states";
 import { StateContent } from "@/data/stateContent";
@@ -8,7 +8,21 @@ interface StateBenefitsSectionProps {
   content: StateContent;
 }
 
-const benefitIcons = [TrendingDown, Leaf, Zap, Sun, Shield, Clock, Award, CheckCircle2];
+const getBenefitIcon = (title: string, index: number): LucideIcon => {
+  const titleLower = title.toLowerCase();
+  if (titleLower.includes("economia") || titleLower.includes("reduz") || titleLower.includes("desconto")) return TrendingDown;
+  if (titleLower.includes("solar") || titleLower.includes("eólica") || titleLower.includes("renovável") || titleLower.includes("limpa")) return Leaf;
+  if (titleLower.includes("turismo") || titleLower.includes("hotel") || titleLower.includes("pousada")) return Zap;
+  if (titleLower.includes("agro") || titleLower.includes("fazenda") || titleLower.includes("agrícola")) return Sun;
+  if (titleLower.includes("indústria") || titleLower.includes("industrial")) return Factory;
+  if (titleLower.includes("comércio") || titleLower.includes("comercial")) return Building2;
+  if (titleLower.includes("sustent") || titleLower.includes("verde") || titleLower.includes("ambiente")) return Leaf;
+  if (titleLower.includes("segur") || titleLower.includes("confiab")) return Shield;
+  if (titleLower.includes("rápid") || titleLower.includes("ágil")) return Clock;
+  
+  const defaultIcons: LucideIcon[] = [TrendingDown, Leaf, Zap, Sun];
+  return defaultIcons[index % defaultIcons.length];
+};
 
 const StateBenefitsSection = ({ state, content }: StateBenefitsSectionProps) => {
   return (
@@ -23,7 +37,8 @@ const StateBenefitsSection = ({ state, content }: StateBenefitsSectionProps) => 
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
           {content.benefits.items.map((benefit, index) => {
-            const Icon = benefitIcons[index % benefitIcons.length];
+            const Icon = getBenefitIcon(benefit.title, index);
+            
             const colors = [
               { bg: "bg-primary/10", text: "text-primary", border: "hover:border-primary/30" },
               { bg: "bg-secondary/10", text: "text-secondary", border: "hover:border-secondary/30" },
