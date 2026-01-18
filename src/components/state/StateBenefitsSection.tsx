@@ -35,7 +35,7 @@ const StateBenefitsSection = ({ state, content }: StateBenefitsSectionProps) => 
           {content.benefits.description}
         </p>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {content.benefits.items.map((benefit, index) => {
             const Icon = getBenefitIcon(benefit.title, index);
             
@@ -64,8 +64,8 @@ const StateBenefitsSection = ({ state, content }: StateBenefitsSectionProps) => 
                 <div className={`w-14 h-14 rounded-xl ${color.bg} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
                   <Icon className={`w-7 h-7 ${color.text}`} />
                 </div>
-                <h3 className="font-display text-lg font-semibold mb-2">{benefit.title}</h3>
-                <p className="text-sm text-muted-foreground">
+                <h3 className="font-display text-lg font-semibold mb-3">{benefit.title}</h3>
+                <p className="text-base text-muted-foreground leading-relaxed">
                   {benefit.description}
                 </p>
               </div>

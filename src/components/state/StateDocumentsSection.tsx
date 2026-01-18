@@ -46,8 +46,8 @@ const StateDocumentsSection = ({ state, content }: StateDocumentsSectionProps) =
                     <Icon className="w-6 h-6 text-accent" />
                   </div>
                   <div>
-                    <h3 className="font-display font-semibold mb-1">{doc.title}</h3>
-                    <p className="text-sm text-muted-foreground">{doc.description}</p>
+                    <h3 className="font-display font-semibold mb-1 text-base">{doc.title}</h3>
+                    <p className="text-base text-muted-foreground leading-relaxed">{doc.description}</p>
                   </div>
                 </div>
               );

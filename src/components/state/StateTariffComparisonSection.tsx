@@ -59,10 +59,17 @@ const StateTariffComparisonSection = ({ state, content }: StateTariffComparisonS
                       <span className="text-primary font-semibold">{comparison.freeMarketTariff}</span>
                     </TableCell>
                     <TableCell className="text-center">
-                      <span className="inline-flex items-center gap-1 bg-primary/10 text-primary px-3 py-1 rounded-full font-bold">
-                        <TrendingDown className="w-4 h-4" />
-                        {comparison.savings}
-                      </span>
+                      {comparison.savings === "Sem energia disponível" ? (
+                        <span className="inline-flex items-center gap-1 bg-muted text-muted-foreground px-3 py-1 rounded-full text-sm font-medium">
+                          <AlertCircle className="w-4 h-4" />
+                          Sem energia
+                        </span>
+                      ) : (
+                        <span className="inline-flex items-center gap-1 bg-primary/10 text-primary px-3 py-1 rounded-full font-bold">
+                          <TrendingDown className="w-4 h-4" />
+                          {comparison.savings}
+                        </span>
+                      )}
                     </TableCell>
                   </TableRow>
                 ))}
