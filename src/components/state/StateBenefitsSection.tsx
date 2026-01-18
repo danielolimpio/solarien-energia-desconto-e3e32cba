@@ -55,7 +55,7 @@ const StateBenefitsSection = ({ state, content }: StateBenefitsSectionProps) => 
                 {/* Highlight Badge */}
                 {benefit.highlight && (
                   <div className="absolute -top-1 -right-1">
-                    <div className="bg-gradient-solar text-white text-xs font-bold px-3 py-1 rounded-bl-xl rounded-tr-xl shadow-md">
+                    <div className="bg-primary text-primary-foreground text-xs font-bold px-3 py-1 rounded-bl-xl rounded-tr-xl shadow-md">
                       {benefit.highlight}
                     </div>
                   </div>
