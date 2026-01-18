@@ -30,32 +30,33 @@ const StateHowItWorksSection = ({ state, content }: StateHowItWorksSectionProps)
           {content.howItWorks.description}
         </p>
 
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           {/* Steps Timeline */}
           <div className="relative">
             {/* Connection Line - Desktop */}
             <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-1 bg-gradient-to-r from-primary via-secondary to-accent transform -translate-y-1/2 rounded-full" />
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Grid responsivo: 5 colunas em desktop, 3+2 em tablet, 1 em mobile */}
+            <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
             {content.howItWorks.steps.map((step, index) => {
                 const Icon = getStepIcon(step.title, index);
                 return (
                   <div key={index} className="relative">
-                    <div className="bg-card p-6 rounded-2xl border border-border/50 hover:border-primary/30 hover:shadow-elegant transition-all h-full">
+                    <div className="bg-card p-5 rounded-2xl border border-border/50 hover:border-primary/30 hover:shadow-elegant transition-all h-full">
                       {/* Step Number Badge */}
-                      <div className="relative z-10 w-14 h-14 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-bold text-xl mb-4 mx-auto shadow-lg">
+                      <div className="relative z-10 w-12 h-12 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-bold text-lg mb-3 mx-auto shadow-lg">
                         {index + 1}
                       </div>
                       
                       {/* Icon */}
-                      <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                        <Icon className="w-6 h-6 text-primary" />
+                      <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mx-auto mb-3">
+                        <Icon className="w-5 h-5 text-primary" />
                       </div>
                       
-                      <h3 className="font-display text-lg font-semibold text-center mb-2">
+                      <h3 className="font-display text-base font-semibold text-center mb-2">
                         {step.title}
                       </h3>
-                      <p className="text-sm text-muted-foreground text-center">
+                      <p className="text-base text-muted-foreground text-center leading-relaxed">
                         {step.description}
                       </p>
                     </div>

@@ -34,7 +34,7 @@ const StateOpportunitySection = ({ state, content }: StateOpportunitySectionProp
           </p>
 
           {/* Stats Grid */}
-          <div className="grid md:grid-cols-3 gap-6 mb-12">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             {content.opportunity.stats.map((stat, index) => {
               const Icon = getStatIcon(stat.label, stat.value, index);
               return (
@@ -45,10 +45,10 @@ const StateOpportunitySection = ({ state, content }: StateOpportunitySectionProp
                   <div className="w-16 h-16 rounded-2xl bg-primary flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform shadow-lg">
                     <Icon className="w-8 h-8 text-primary-foreground" />
                   </div>
-                  <div className="font-display text-4xl md:text-5xl font-bold text-primary mb-2">
+                  <div className="font-display text-3xl md:text-4xl font-bold text-primary mb-2">
                     {stat.value}
                   </div>
-                  <div className="text-muted-foreground font-medium">
+                  <div className="text-base text-muted-foreground font-medium">
                     {stat.label}
                   </div>
                 </div>
@@ -79,7 +79,7 @@ const StateOpportunitySection = ({ state, content }: StateOpportunitySectionProp
               </div>
               <div className="flex-1">
                 <h4 className="font-display text-lg font-semibold mb-1 text-primary">Dica de Economia</h4>
-                <p className="text-foreground">{content.energyTip}</p>
+                <p className="text-base text-foreground leading-relaxed">{content.energyTip}</p>
               </div>
             </div>
           </div>

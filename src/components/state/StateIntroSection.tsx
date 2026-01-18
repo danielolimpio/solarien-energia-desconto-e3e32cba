@@ -32,11 +32,36 @@ const StateIntroSection = ({ state, content }: StateIntroSectionProps) => {
             
             <div className="prose prose-lg max-w-none text-muted-foreground">
               {/* Use whatIs content if available, otherwise fall back to introduction */}
-              {(content.whatIs?.content || content.introduction).split('\n\n').map((paragraph, index) => (
-                <p key={index} className="mb-4 last:mb-0 leading-relaxed whitespace-pre-line">
-                  {paragraph}
-                </p>
-              ))}
+              {(content.whatIs?.content || content.introduction).split('\n\n').map((paragraph, index) => {
+                // Check if paragraph contains bullet points
+                if (paragraph.includes('•')) {
+                  const lines = paragraph.split('\n').filter(l => l.trim());
+                  const titleLine = lines[0].includes('•') ? null : lines[0];
+                  const bulletLines = lines.filter(l => l.includes('•'));
+                  
+                  return (
+                    <div key={index} className="mb-4 last:mb-0">
+                      {titleLine && (
+                        <p className="font-semibold text-foreground mb-3 text-base">{titleLine}</p>
+                      )}
+                      <ul className="space-y-2">
+                        {bulletLines.map((line, i) => (
+                          <li key={i} className="flex items-start gap-3">
+                            <span className="w-2 h-2 rounded-full bg-primary shrink-0 mt-2" />
+                            <span className="text-base leading-relaxed">{line.replace('•', '').trim()}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  );
+                }
+                
+                return (
+                  <p key={index} className="mb-4 last:mb-0 leading-relaxed text-base">
+                    {paragraph}
+                  </p>
+                );
+              })}
             </div>
           </div>
 

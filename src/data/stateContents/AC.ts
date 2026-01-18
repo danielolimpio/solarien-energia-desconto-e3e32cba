@@ -17,8 +17,8 @@ export const acreContent: StateContent = {
     "energia renovável acre"
   ],
 
-  // H1 Principal - Único por página
-  h1: "Mercado Livre de Energia no Acre: Economia de até 45% para Empresas",
+  // H1 Principal - Único por página (destacar "Economia de até 45%" em verde)
+  h1: "Mercado Livre de Energia no Acre: <span class=\"text-primary\">Economia de até 45%</span> para Empresas",
   
   hook: "Na Amazônia Ocidental, onde a tarifa de energia é uma das mais altas do Brasil, empresas de Rio Branco, Cruzeiro do Sul e Sena Madureira já economizam até R$ 12.000/mês com o Mercado Livre de Energia.",
   
@@ -35,9 +35,11 @@ A Solarien Energy atua como gestora especializada, cuidando de todo o processo d
     title: "O Que é o Mercado Livre de Energia?",
     content: `O Mercado Livre de Energia (MLE) é um modelo de comercialização regulamentado pela ANEEL onde consumidores podem escolher seu fornecedor de energia. Diferente do mercado cativo (Energisa Acre), onde o preço é tabelado, no Mercado Livre você negocia diretamente valores e condições.
 
-**Principais diferenças entre Mercado Cativo e Mercado Livre:**
-- **Mercado Cativo (Energisa):** Preço tabelado pela ANEEL, sem poder de negociação, sujeito a bandeiras tarifárias
-- **Mercado Livre:** Preço negociável, contratos de 1 a 5 anos, imunidade às bandeiras tarifárias, energia de fonte escolhida
+Principais diferenças entre Mercado Cativo e Mercado Livre:
+
+• Mercado Cativo (Energisa): Preço tabelado pela ANEEL, sem poder de negociação, sujeito a bandeiras tarifárias
+
+• Mercado Livre: Preço negociável, contratos de 1 a 5 anos, imunidade às bandeiras tarifárias, energia de fonte escolhida
 
 No Acre, a combinação de tarifa elevada + clima equatorial (que exige climatização intensa) torna o Mercado Livre especialmente vantajoso para empresas.`
   },
@@ -60,7 +62,7 @@ No Acre, a combinação de tarifa elevada + clima equatorial (que exige climatiz
     steps: [
       { 
         title: "1. Diagnóstico Energético Gratuito", 
-        description: "Analisamos suas últimas 12 faturas da Energisa Acre, identificamos seu perfil de consumo, picos de demanda e calculamos o potencial real de economia considerando climatização e refrigeração." 
+        description: "Analisamos suas últimas 3 faturas da Energisa Acre, identificamos seu perfil de consumo, picos de demanda e calculamos o potencial real de economia considerando climatização e refrigeração." 
       },
       { 
         title: "2. Cotação com Fornecedores Qualificados", 
@@ -121,40 +123,40 @@ No Acre, a combinação de tarifa elevada + clima equatorial (que exige climatiz
     description: "Compare as tarifas e veja quanto sua empresa pode economizar migrando para o Mercado Livre de Energia no Acre.",
     comparisons: [
       {
-        distributor: "Energisa Acre (Grupo B)",
+        distributor: "Energia por Assinatura (Grupo B)",
         distributorTariff: "R$ 0,89/kWh",
-        freeMarketTariff: "R$ 0,49-0,55/kWh",
-        savings: "38-45%",
+        freeMarketTariff: "Até 25% de desconto",
+        savings: "Sem energia disponível",
         paybackMonths: 0
       },
       {
-        distributor: "Energisa Acre (Grupo A - Industrial)",
+        distributor: "Mercado Livre (Grupo A - Industrial)",
         distributorTariff: "R$ 0,72/kWh",
         freeMarketTariff: "R$ 0,42-0,48/kWh",
         savings: "33-42%",
         paybackMonths: 0
       }
     ],
-    disclaimer: "Valores aproximados com base em tarifas de jan/2024. O preço final no Mercado Livre varia conforme volume contratado, prazo e fonte de energia. Solicite uma simulação personalizada para valores exatos."
+    disclaimer: "Valores aproximados com base em tarifas de janeiro/2026. O preço final no Mercado Livre varia conforme volume contratado, prazo e fonte de energia. Solicite uma simulação personalizada para valores exatos."
   },
 
-  // Energia Solar + Mercado Livre - NOVA SEÇÃO
+  // Mercado Livre de Energia no Acre - Vantagens Regionais
   solarPotential: {
-    title: "Energia Solar + Mercado Livre no Acre",
-    description: `O Acre possui excelente potencial solar, com irradiação média de 4,5 a 5,0 kWh/m²/dia – suficiente para viabilizar projetos fotovoltaicos. A combinação de geração própria (painéis solares) com compra de energia excedente no Mercado Livre pode maximizar sua economia.
+    title: "Mercado Livre de Energia no Acre",
+    description: `O Acre apresenta condições únicas que tornam o Mercado Livre de Energia extremamente vantajoso para empresas. Com uma das tarifas mais altas do Brasil e alta demanda por climatização, a economia pode chegar a 45%.
 
-**Como funciona a combinação:**
-1. Instale painéis solares para cobrir parte do consumo (autogeração)
-2. Contrate o restante da energia no Mercado Livre com preços competitivos
-3. Utilize créditos de energia solar para compensar consumo em horários de pico
+Vantagens exclusivas do Mercado Livre no Acre:
 
-**Vantagens para o Acre:**
-- Redução de até 70% nos custos totais de energia
-- Menor dependência da rede e maior resiliência
-- Contribuição para diversificação da matriz energética regional`,
-    averageIrradiation: "4,5 a 5,0 kWh/m²/dia",
-    idealMonths: "Maio a Setembro (período menos chuvoso)",
-    combinedSavings: "Até 70% combinando solar + Mercado Livre"
+• Economia imediata: Reduza sua conta de luz em até 45% desde o primeiro mês
+
+• Preço fixo: Contratos de 1 a 5 anos com valores pré-definidos, sem bandeiras tarifárias
+
+• Energia certificada: Acesso a energia 100% renovável com certificado I-REC
+
+A Solarien Energy é especialista em migração para o Mercado Livre no Acre, cuidando de todo o processo sem custos para sua empresa.`,
+    averageIrradiation: "Economia de até 45%",
+    idealMonths: "Migração em 30-60 dias",
+    combinedSavings: "Até 45% no Mercado Livre"
   },
 
   // Market Types
@@ -240,10 +242,9 @@ A Solarien trabalha exclusivamente com geradores e comercializadores qualificado
     title: "Documentos para Migrar para o Mercado Livre no Acre",
     description: "Documentação simples – reunimos e organizamos tudo para você em menos de 48 horas",
     items: [
-      { icon: "file", title: "Últimas 12 Faturas de Energia", description: "Contas de energia recentes da Energisa Acre para análise de perfil de consumo" },
+      { icon: "file", title: "Últimas 3 Faturas de Energia", description: "Contas de energia recentes da Energisa Acre para análise de perfil de consumo" },
       { icon: "building", title: "Documentos Empresariais", description: "CNPJ atualizado, contrato social e comprovante de inscrição estadual" },
       { icon: "user", title: "Identificação do Representante", description: "RG e CPF do representante legal com poderes para assinar contratos" },
-      { icon: "map", title: "Comprovante de Endereço", description: "Documento recente do endereço da unidade consumidora" },
       { icon: "zap", title: "Dados da Instalação Elétrica", description: "Informações sobre tensão, demanda contratada e características técnicas" }
     ]
   },
@@ -337,7 +338,7 @@ A Solarien trabalha exclusivamente com geradores e comercializadores qualificado
 
   economicProfile: "A economia do Acre é baseada em extrativismo sustentável (borracha, castanha, açaí), agropecuária, processamento de pescado, turismo ecológico e serviços públicos. Os setores que mais se beneficiam do Mercado Livre de Energia são: frigoríficos, hotéis e pousadas, supermercados e distribuidoras de alimentos, agroindústrias de processamento e indústrias de transformação.",
 
-  energyTip: "Dica para empresas no Acre: Combine equipamentos de climatização com tecnologia inverter, isolamento térmico eficiente e migração para o Mercado Livre. Essa combinação pode reduzir seus custos totais de energia em até 60%, mesmo no clima equatorial intenso.",
+  energyTip: "Dica para empresas no Acre: Migre para o Mercado Livre de Energia com a Solarien Energy e economize até 45% na conta de luz. A Solarien cuida de todo o processo sem custos, garantindo economia imediata e previsibilidade orçamentária para sua empresa.",
 
   mainCities: [
     "Rio Branco",
