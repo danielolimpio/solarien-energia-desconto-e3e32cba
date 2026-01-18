@@ -1,4 +1,4 @@
-import { ClipboardList, FileSearch, Calculator, Zap, ArrowRight } from "lucide-react";
+import { MessageSquare, FileSearch, ClipboardCheck, Zap, ArrowRight, LucideIcon, Phone, BarChart2, FileText, CheckCircle } from "lucide-react";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { StateInfo } from "@/data/states";
 import { StateContent } from "@/data/stateContent";
@@ -8,7 +8,16 @@ interface StateHowItWorksSectionProps {
   content: StateContent;
 }
 
-const stepIcons = [ClipboardList, FileSearch, Calculator, Zap];
+const getStepIcon = (title: string, index: number): LucideIcon => {
+  const titleLower = title.toLowerCase();
+  if (titleLower.includes("contato") || titleLower.includes("fale") || titleLower.includes("whatsapp")) return MessageSquare;
+  if (titleLower.includes("análise") || titleLower.includes("avalia")) return BarChart2;
+  if (titleLower.includes("proposta") || titleLower.includes("solução")) return FileText;
+  if (titleLower.includes("migração") || titleLower.includes("migra") || titleLower.includes("economia")) return CheckCircle;
+  
+  const defaultIcons: LucideIcon[] = [MessageSquare, BarChart2, FileText, CheckCircle];
+  return defaultIcons[index % defaultIcons.length];
+};
 
 const StateHowItWorksSection = ({ state, content }: StateHowItWorksSectionProps) => {
   return (
@@ -28,8 +37,8 @@ const StateHowItWorksSection = ({ state, content }: StateHowItWorksSectionProps)
             <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-1 bg-gradient-to-r from-primary via-secondary to-accent transform -translate-y-1/2 rounded-full" />
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {content.howItWorks.steps.map((step, index) => {
-                const Icon = stepIcons[index] || Zap;
+            {content.howItWorks.steps.map((step, index) => {
+                const Icon = getStepIcon(step.title, index);
                 return (
                   <div key={index} className="relative">
                     <div className="bg-card p-6 rounded-2xl border border-border/50 hover:border-primary/30 hover:shadow-elegant transition-all h-full">
