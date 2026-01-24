@@ -22,12 +22,42 @@ export const getAllSitemapUrls = (): SitemapUrl[] => {
     priority: "1.0",
   });
 
+  // Contact page
+  urls.push({
+    loc: `${BASE_URL}/contato`,
+    lastmod: today,
+    changefreq: "monthly",
+    priority: "0.8",
+  });
+
   // Sitemap page
   urls.push({
     loc: `${BASE_URL}/sitemap`,
     lastmod: today,
     changefreq: "monthly",
     priority: "0.5",
+  });
+
+  // Legal pages
+  urls.push({
+    loc: `${BASE_URL}/politica-de-privacidade`,
+    lastmod: today,
+    changefreq: "monthly",
+    priority: "0.3",
+  });
+
+  urls.push({
+    loc: `${BASE_URL}/termos-de-uso`,
+    lastmod: today,
+    changefreq: "monthly",
+    priority: "0.3",
+  });
+
+  urls.push({
+    loc: `${BASE_URL}/politica-de-cookies`,
+    lastmod: today,
+    changefreq: "monthly",
+    priority: "0.3",
   });
 
   // State pages
