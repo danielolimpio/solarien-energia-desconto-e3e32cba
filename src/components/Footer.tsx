@@ -140,6 +140,12 @@ const Footer = () => {
         <div className="mb-8">
           <div className="flex flex-wrap justify-center gap-6 text-sm">
             <Link 
+              to="/contato" 
+              className="text-primary-foreground/70 hover:text-primary transition-colors"
+            >
+              Contato
+            </Link>
+            <Link 
               to="/politica-de-privacidade" 
               className="text-primary-foreground/70 hover:text-primary transition-colors"
             >

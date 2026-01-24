@@ -5,10 +5,19 @@ import Footer from "@/components/Footer";
 import { brazilianStates } from "@/data/states";
 import { citiesByState } from "@/data/cities";
 import { getSitemapStats } from "@/utils/generateSitemap";
-import { MapPin, Building2, Home, FileText, ExternalLink, Shield, Scale, Cookie, Globe, Zap } from "lucide-react";
+import { MapPin, Building2, Home, FileText, ExternalLink, Shield, Scale, Cookie, Globe, Zap, MessageCircle } from "lucide-react";
 
 const SitemapPage = () => {
   const stats = getSitemapStats();
+
+  const mainPages = [
+    { 
+      title: "Contato", 
+      path: "/contato", 
+      icon: MessageCircle,
+      description: "Fale conosco e solicite uma simulação gratuita"
+    },
+  ];
 
   const legalPages = [
     { 
@@ -126,10 +135,38 @@ const SitemapPage = () => {
             </div>
           </section>
 
-          {/* Legal Pages Section */}
+          {/* Main Pages Section */}
           <section className="py-8 bg-muted/30">
             <div className="container mx-auto px-4">
               <div className="max-w-6xl mx-auto">
+                <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
+                  <MessageCircle className="w-6 h-6 text-primary" />
+                  Páginas Principais
+                </h2>
+                <div className="grid md:grid-cols-2 gap-4 mb-8">
+                  {mainPages.map((page) => (
+                    <Link
+                      key={page.path}
+                      to={page.path}
+                      className="bg-card rounded-xl p-6 border hover:border-primary/50 hover:shadow-lg transition-all group"
+                    >
+                      <div className="flex items-start gap-4">
+                        <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center shrink-0">
+                          <page.icon className="w-6 h-6 text-primary" />
+                        </div>
+                        <div>
+                          <span className="text-foreground font-semibold group-hover:text-primary transition-colors block">
+                            {page.title}
+                          </span>
+                          <p className="text-sm text-muted-foreground mt-1">
+                            {page.description}
+                          </p>
+                        </div>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+
                 <h2 className="text-2xl font-bold text-foreground mb-6 flex items-center gap-2">
                   <Shield className="w-6 h-6 text-primary" />
                   Páginas Legais
