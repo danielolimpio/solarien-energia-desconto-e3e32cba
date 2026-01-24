@@ -13,7 +13,7 @@ const PrivacyPolicyPage = () => {
           content="Política de Privacidade do Mercado Livre de Energia. Saiba como coletamos, usamos e protegemos suas informações pessoais."
         />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://solarien-energia-desconto.lovable.app/politica-de-privacidade" />
+        <link rel="canonical" href="https://mercadolivredeenergia.org/politica-de-privacidade" />
       </Helmet>
 
       <div className="min-h-screen flex flex-col">

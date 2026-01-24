@@ -13,7 +13,7 @@ const CookiePolicyPage = () => {
           content="Política de Cookies do Mercado Livre de Energia. Entenda como utilizamos cookies e tecnologias similares em nosso site."
         />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://solarien-energia-desconto.lovable.app/politica-de-cookies" />
+        <link rel="canonical" href="https://mercadolivredeenergia.org/politica-de-cookies" />
       </Helmet>
 
       <div className="min-h-screen flex flex-col">

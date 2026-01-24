@@ -26,13 +26,13 @@ const Index = () => {
         />
         <meta name="author" content="Mercado Livre de Energia" />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://mercadolivredeenergia.pagin.com.br" />
+        <link rel="canonical" href="https://mercadolivredeenergia.org" />
         
         {/* Open Graph */}
         <meta property="og:title" content="Mercado Livre de Energia | Economize até 45% na Conta de Luz" />
         <meta property="og:description" content="Descubra como economizar até 45% na conta de energia com o Mercado Livre de Energia. Energia renovável para todo Brasil." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://mercadolivredeenergia.pagin.com.br" />
+        <meta property="og:url" content="https://mercadolivredeenergia.org" />
         <meta property="og:locale" content="pt_BR" />
         
         {/* Twitter */}
@@ -47,7 +47,7 @@ const Index = () => {
             "@type": "LocalBusiness",
             "name": "Mercado Livre de Energia",
             "description": "Plataforma de Mercado Livre de Energia oferecendo economia de até 45% na conta de luz com energia renovável para todo Brasil.",
-            "url": "https://mercadolivredeenergia.pagin.com.br",
+            "url": "https://mercadolivredeenergia.org",
             "telephone": "+55-12-98251-9116",
             "address": {
               "@type": "PostalAddress",
