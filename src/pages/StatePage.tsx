@@ -62,12 +62,12 @@ const StatePage = () => {
         <meta name="description" content={pageDescription} />
         <meta name="keywords" content={pageKeywords} />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href={`https://solarien-energia-desconto.lovable.app/${state.slug}`} />
+        <link rel="canonical" href={`https://mercadolivredeenergia.org/${state.slug}`} />
         
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={pageDescription} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={`https://solarien-energia-desconto.lovable.app/${state.slug}`} />
+        <meta property="og:url" content={`https://mercadolivredeenergia.org/${state.slug}`} />
         <meta property="og:locale" content="pt_BR" />
         
         <meta name="twitter:card" content="summary_large_image" />
@@ -80,7 +80,7 @@ const StatePage = () => {
             "@type": "LocalBusiness",
             "name": `Solarien Energy - Mercado Livre de Energia ${state.preposition} ${state.name}`,
             "description": pageDescription,
-            "url": `https://solarien-energia-desconto.lovable.app/${state.slug}`,
+            "url": `https://mercadolivredeenergia.org/${state.slug}`,
             "telephone": "+55-12-98251-9116",
             "areaServed": {
               "@type": "State",

@@ -40,7 +40,7 @@ const SitemapPage = () => {
           content="Navegue por todas as páginas do Mercado Livre de Energia. Encontre informações sobre energia em todos os estados e cidades do Brasil."
         />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://solarien-energia-desconto.lovable.app/sitemap" />
+        <link rel="canonical" href="https://mercadolivredeenergia.org/sitemap" />
       </Helmet>
 
       <div className="min-h-screen flex flex-col">

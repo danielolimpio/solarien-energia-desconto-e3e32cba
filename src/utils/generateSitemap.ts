@@ -1,7 +1,7 @@
 import { brazilianStates } from "@/data/states";
 import { citiesByState } from "@/data/cities";
 
-const BASE_URL = "https://solarien-energia-desconto.lovable.app";
+const BASE_URL = "https://mercadolivredeenergia.org";
 
 interface SitemapUrl {
   loc: string;

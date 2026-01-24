@@ -72,7 +72,7 @@ const CityPage = () => {
     "@type": "LocalBusiness",
     "name": `Solarien Energy - Mercado Livre de Energia em ${city.name}`,
     "description": pageDescription,
-    "url": `https://mercadolivredeenergia.pagin.com.br/${city.slug}`,
+    "url": `https://mercadolivredeenergia.org/${city.slug}`,
     "telephone": "+55-12-98251-9116",
     "address": {
       "@type": "PostalAddress",
@@ -129,7 +129,7 @@ const CityPage = () => {
           content={`mercado livre de energia em ${city.name.toLowerCase()}, como migrar para o mercado livre de energia em ${city.name.toLowerCase()}, economia na conta de luz ${city.name.toLowerCase()}, energia renovável ${city.name.toLowerCase()}, fornecedor de energia ${stateAbbr.toLowerCase()}, tarifa branca ${city.name.toLowerCase()}, energia solar ${city.name.toLowerCase()}, ${distributors.join(', ').toLowerCase()}`}
         />
         <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
-        <link rel="canonical" href={`https://mercadolivredeenergia.pagin.com.br/${city.slug}`} />
+        <link rel="canonical" href={`https://mercadolivredeenergia.org/${city.slug}`} />
         <meta name="author" content="Solarien Energy" />
         <meta name="geo.region" content={`BR-${stateAbbr}`} />
         <meta name="geo.placename" content={city.name} />
@@ -137,7 +137,7 @@ const CityPage = () => {
         <meta property="og:title" content={pageTitle} />
         <meta property="og:description" content={pageDescription} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={`https://mercadolivredeenergia.pagin.com.br/${city.slug}`} />
+        <meta property="og:url" content={`https://mercadolivredeenergia.org/${city.slug}`} />
         <meta property="og:locale" content="pt_BR" />
         <meta property="og:site_name" content="Mercado Livre de Energia - Solarien Energy" />
 

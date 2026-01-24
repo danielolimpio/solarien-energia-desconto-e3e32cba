@@ -13,7 +13,7 @@ const TermsOfUsePage = () => {
           content="Termos de Uso do Mercado Livre de Energia. Leia os termos e condições para uso do nosso site e serviços."
         />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://solarien-energia-desconto.lovable.app/termos-de-uso" />
+        <link rel="canonical" href="https://mercadolivredeenergia.org/termos-de-uso" />
       </Helmet>
 
       <div className="min-h-screen flex flex-col">
