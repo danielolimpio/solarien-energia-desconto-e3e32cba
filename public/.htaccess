@@ -4,19 +4,8 @@
   RewriteBase /
 
   # ============================================
-  # PRERENDER FOR SEARCH ENGINE BOTS
-  # Serve static HTML files to crawlers/bots
-  # ============================================
-
-  # Check if this is a bot/crawler
-  RewriteCond %{HTTP_USER_AGENT} googlebot|bingbot|yandex|baiduspider|facebookexternalhit|twitterbot|rogerbot|linkedinbot|embedly|quora\ link\ preview|showyoubot|outbrain|pinterest|slackbot|vkShare|W3C_Validator|whatsapp [NC,OR]
-  RewriteCond %{HTTP_USER_AGENT} Googlebot-Image|Googlebot-News|Googlebot-Video|AdsBot-Google|Mediapartners-Google [NC]
-  # If a .html file exists for this route, serve it to bots
-  RewriteCond %{REQUEST_FILENAME}.html -f
-  RewriteRule ^(.*)$ $1.html [L]
-
-  # ============================================
-  # CLEAN URLs (NO TRAILING SLASH)
+  # SERVE STATIC HTML FILES
+  # Priority: Serve .html files if they exist
   # ============================================
 
   # Remove trailing slashes (except for root)
@@ -24,16 +13,23 @@
   RewriteCond %{REQUEST_URI} (.+)/$
   RewriteRule ^ %1 [R=301,L]
 
-  # ============================================
-  # SPA FALLBACK FOR REGULAR USERS
-  # ============================================
+  # If request is for a file that exists, serve it
+  RewriteCond %{REQUEST_FILENAME} -f
+  RewriteRule ^ - [L]
 
-  # Don't rewrite files that exist
-  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  # If request is for a directory that exists, serve it
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule ^ - [L]
 
-  # For non-bot users, serve index.html (SPA mode)
+  # If .html version exists, serve it (for clean URLs)
+  RewriteCond %{REQUEST_FILENAME}.html -f
+  RewriteRule ^(.*)$ $1.html [L]
+
+  # ============================================
+  # SPA FALLBACK
+  # For routes without static HTML, serve index.html
+  # ============================================
+
   RewriteRule ^ index.html [L]
 </IfModule>
 
@@ -48,12 +44,12 @@
   Header set X-XSS-Protection "1; mode=block"
   Header set Referrer-Policy "strict-origin-when-cross-origin"
   
-  # Cache static assets
+  # Cache static assets for 1 year
   <FilesMatch "\.(ico|pdf|jpg|jpeg|png|gif|webp|svg|js|css|woff|woff2)$">
     Header set Cache-Control "max-age=31536000, public, immutable"
   </FilesMatch>
   
-  # Cache HTML files for shorter period
+  # Cache HTML files for 1 hour
   <FilesMatch "\.html$">
     Header set Cache-Control "max-age=3600, public, must-revalidate"
   </FilesMatch>
