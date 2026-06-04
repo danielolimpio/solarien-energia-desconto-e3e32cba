@@ -1,0 +1,28 @@
+# Mercado Livre de Energia
+
+> Plataforma brasileira que conecta consumidores ao Mercado Livre de Energia, oferecendo economia de até 45% na conta de luz com energia renovável por assinatura.
+
+O site ajuda pessoas físicas, empresas, comércios e indústrias a entenderem como funciona o Mercado Livre de Energia e a migrarem para o regime livre com suporte da Solarien Energy. O conteúdo cobre desde como funciona o mercado, vantagens e cobertura por estado e cidade, até detalhes regulatórios e econômicos específicos de cada região brasileira. O site é bilíngue em português e utiliza SEO local para alcançar consumidores em todas as cidades do Brasil.
+
+## Pages
+
+- [Página Inicial](/): Economize até 45% na conta de luz com o Mercado Livre de Energia — descubra como funciona e peça uma simulação gratuita.
+- [Contato](/contato): Formulário e WhatsApp para falar com um consultor e solicitar simulação personalizada.
+- [Mapa do Site](/sitemap): Navegue por todas as páginas do site, incluindo estados e cidades atendidas.
+
+## Estados e Cidades
+
+- [Mercado Livre de Energia em São Paulo](/mercado-livre-de-energia-em-sao-paulo): Informações sobre o mercado livre no estado de São Paulo, incluindo regulamentação, tarifas e vantagens.
+- [Mercado Livre de Energia em Minas Gerais](/mercado-livre-de-energia-em-minas-gerais): Informações sobre o mercado livre em Minas Gerais.
+- [Mercado Livre de Energia no Rio de Janeiro](/mercado-livre-de-energia-no-rio-de-janeiro): Informações sobre o mercado livre no Rio de Janeiro.
+- [Mercado Livre de Energia em Campinas](/mercado-livre-de-energia-em-campinas-sp): Guia específico para empresas e residências de Campinas migrarem para o mercado livre.
+
+## Legais
+
+- [Política de Privacidade](/politica-de-privacidade): Como coletamos, usamos e protegemos seus dados pessoais.
+- [Termos de Uso](/termos-de-uso): Condições de uso do site e dos serviços oferecidos.
+- [Política de Cookies](/politica-de-cookies): Uso de cookies e tecnologias de rastreamento.
+
+## Optional
+
+- [Página não encontrada](/404): Mensagem de erro padrão para URLs inexistentes.
