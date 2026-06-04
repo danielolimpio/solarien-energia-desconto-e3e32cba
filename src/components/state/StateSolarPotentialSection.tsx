@@ -110,7 +110,7 @@ const StateSolarPotentialSection = ({ state, content }: StateSolarPotentialSecti
                   <div>
                     <h4 className="font-display font-semibold mb-1 text-base">Economia Total</h4>
                     <p className="text-3xl font-bold">{content.solarPotential.combinedSavings}</p>
-                    <p className="text-base text-white/80">Máxima economia com a Solarien Energy</p>
+                    <p className="text-base text-white/95">Máxima economia com a Solarien Energy</p>
                   </div>
                 </div>
               </div>
