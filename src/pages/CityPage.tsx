@@ -42,8 +42,8 @@ const CityPage = () => {
   }
 
   // SEO optimized title and description
-  const pageTitle = `Economize até 45% na Conta de Luz em ${city.name} | Mercado Livre de Energia`;
-  const pageDescription = `Descubra como ${city.name} está migrando para o Mercado Livre de Energia e economizando até 45%. Simule sua economia grátis com a Solarien Energy, especialista em energia por assinatura.`;
+  const pageTitle = `Mercado Livre de Energia em ${city.name}`;
+  const pageDescription = `Economize até 45% em ${city.name} com o Mercado Livre de Energia. Simule grátis com a Solarien Energy.`;
 
   // Get related data for unique content
   const otherCities = getCitiesByState(stateAbbr)
@@ -122,7 +122,7 @@ const CityPage = () => {
   return (
     <>
       <Helmet>
-        <title>{pageTitle} – Solarien Energy</title>
+        <title>{pageTitle}</title>
         <meta name="description" content={pageDescription} />
         <meta
           name="keywords"
