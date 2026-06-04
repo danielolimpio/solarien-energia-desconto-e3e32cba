@@ -37,7 +37,7 @@ const StatePage = () => {
   }
 
   // Use optimized meta if available, fallback to defaults
-  const pageTitle = content?.metaTitle || `Mercado Livre de Energia ${state.preposition} ${state.name} | Economize até 45%`;
+  const pageTitle = content?.metaTitle || `Mercado Livre de Energia ${state.preposition} ${state.name}`;
   const pageDescription = content?.metaDescription || `Empresas ${state.preposition} ${state.name}: reduza sua conta de luz com o Mercado Livre de Energia. Simule grátis!`;
   const pageKeywords = content?.keywords?.join(", ") || `mercado livre de energia ${state.name}, economia energia ${state.abbreviation}`;
 

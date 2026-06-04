@@ -15,10 +15,10 @@ const Index = () => {
   return (
     <>
       <Helmet>
-        <title>Mercado Livre de Energia | Economize até 45% na Conta de Luz | Solarien Energy</title>
+        <title>Mercado Livre de Energia | Economize até 45%</title>
         <meta 
           name="description" 
-          content="Descubra como economizar até 45% na conta de energia com o Mercado Livre de Energia. Energia renovável para residências, comércios e indústrias em todo Brasil. Simulação gratuita!" 
+          content="Economize até 45% na conta de energia com o Mercado Livre de Energia. Energia renovável para residências, comércios e indústrias. Simulação grátis!" 
         />
         <meta 
           name="keywords" 
