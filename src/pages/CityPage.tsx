@@ -624,7 +624,7 @@ const CityPage = () => {
                   Comece a Economizar em{" "}
                   {city.name} Hoje!
                 </h2>
-                <p className="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
+                <p className="text-lg text-white/95 mb-8 max-w-2xl mx-auto">
                   Faça uma simulação gratuita e descubra quanto você pode economizar
                   na conta de luz com o Mercado Livre de Energia em {city.name}, {state.name}.
                 </p>
@@ -632,7 +632,7 @@ const CityPage = () => {
                   Simular Minha Economia Agora
                 </WhatsAppButton>
                 
-                <p className="mt-6 text-sm text-white/60">
+                <p className="mt-6 text-sm text-white/90">
                   Atendemos residências, comércios e indústrias em {city.name} e região
                 </p>
               </div>

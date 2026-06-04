@@ -244,7 +244,7 @@ const StatePage = () => {
               <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
                 Pronto para Economizar {state.preposition} {state.name}?
               </h2>
-              <p className="text-lg text-white/80 mb-8 max-w-2xl mx-auto">
+              <p className="text-lg text-white/95 mb-8 max-w-2xl mx-auto">
                 Entre em contato agora e descubra quanto você pode economizar com o Mercado Livre de Energia
               </p>
               <WhatsAppButton size="lg" className="bg-white text-primary hover:bg-white/90">
