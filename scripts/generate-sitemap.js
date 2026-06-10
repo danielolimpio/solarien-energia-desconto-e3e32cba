@@ -1,7 +1,7 @@
 // Generates public/sitemap.xml from real static HTML pages + SPA routes.
 // Run with: node scripts/generate-sitemap.js
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path'; import { fileURLToPath } from 'url'; const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const BASE_URL = 'https://mercadolivredeenergia.org';
 const today = new Date().toISOString().split('T')[0];
