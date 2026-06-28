@@ -433,7 +433,7 @@ const BlogPostPage = () => {
               <div className="grid lg:grid-cols-[1fr_320px] gap-10 max-w-6xl mx-auto">
                 {/* Content */}
                 <article>
-                  <ArticleContent />
+                  <ArticleContent middleImage={post.middleImage} />
 
                   {/* Tags */}
                   <div className="mt-10 pt-6 border-t border-border">
