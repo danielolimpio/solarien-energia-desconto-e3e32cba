@@ -20,6 +20,21 @@ import {
 } from "lucide-react";
 import { getPostBySlug, blogPosts } from "@/data/blogPosts";
 
+const ArticleMiddleImage = ({ src, alt }: { src: string; alt: string }) => (
+  <figure className="not-prose my-10">
+    <img
+      src={src}
+      alt={alt}
+      loading="lazy"
+      className="rounded-2xl w-full shadow-lg"
+    />
+    <figcaption className="text-sm text-muted-foreground text-center mt-3 italic">
+      Análise técnica e comercial é a parte mais importante da migração — e
+      deve acontecer antes de qualquer assinatura.
+    </figcaption>
+  </figure>
+);
+
 const ArticleContent = () => (
   <div className="prose-content space-y-6 text-foreground/85 leading-relaxed text-[1.02rem]">
     <p className="lead text-lg md:text-xl text-foreground/90 leading-relaxed font-medium">
