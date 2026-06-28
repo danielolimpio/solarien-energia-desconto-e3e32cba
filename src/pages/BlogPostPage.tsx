@@ -120,7 +120,12 @@ const ArticleContent = ({ middleImage }: { middleImage?: string }) => (
       muito mais do que parece.
     </p>
 
-    {/* middle image inserted by parent via post.middleImage */}
+    {middleImage && (
+      <ArticleMiddleImage
+        src={middleImage}
+        alt="Consultor apresentando análise de economia no Mercado Livre de Energia para executivos de uma indústria brasileira"
+      />
+    )}
 
     <h2 id="quanto-se-economiza">Quanto realmente se economiza?</h2>
     <p>
