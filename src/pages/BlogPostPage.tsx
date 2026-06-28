@@ -120,18 +120,7 @@ const ArticleContent = () => (
       muito mais do que parece.
     </p>
 
-    <figure className="not-prose my-10">
-      <img
-        src="/src/assets/blog/acl-2026-meeting.jpg"
-        alt="Consultor apresentando análise de economia no Mercado Livre de Energia para executivos de uma indústria brasileira"
-        loading="lazy"
-        className="rounded-2xl w-full shadow-lg"
-      />
-      <figcaption className="text-sm text-muted-foreground text-center mt-3 italic">
-        Análise técnica e comercial é a parte mais importante da migração — e
-        deve acontecer antes de qualquer assinatura.
-      </figcaption>
-    </figure>
+    {/* middle image inserted by parent via post.middleImage */}
 
     <h2 id="quanto-se-economiza">Quanto realmente se economiza?</h2>
     <p>
