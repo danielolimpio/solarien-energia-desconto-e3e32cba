@@ -146,6 +146,18 @@ const Footer = () => {
               Contato
             </Link>
             <Link 
+              to="/blog" 
+              className="text-primary-foreground/70 hover:text-primary transition-colors"
+            >
+              Blog
+            </Link>
+            <Link 
+              to="/sobre" 
+              className="text-primary-foreground/70 hover:text-primary transition-colors"
+            >
+              Sobre
+            </Link>
+            <Link 
               to="/politica-de-privacidade" 
               className="text-primary-foreground/70 hover:text-primary transition-colors"
             >

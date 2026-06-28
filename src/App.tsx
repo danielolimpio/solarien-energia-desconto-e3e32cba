@@ -12,6 +12,9 @@ import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 import TermsOfUsePage from "./pages/TermsOfUsePage";
 import CookiePolicyPage from "./pages/CookiePolicyPage";
 import ContactPage from "./pages/ContactPage";
+import BlogPage from "./pages/BlogPage";
+import BlogPostPage from "./pages/BlogPostPage";
+import AboutPage from "./pages/AboutPage";
 import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
@@ -31,6 +34,9 @@ const App = () => (
             <Route path="/termos-de-uso" element={<TermsOfUsePage />} />
             <Route path="/politica-de-cookies" element={<CookiePolicyPage />} />
             <Route path="/contato" element={<ContactPage />} />
+            <Route path="/blog" element={<BlogPage />} />
+            <Route path="/blog/:slug" element={<BlogPostPage />} />
+            <Route path="/sobre" element={<AboutPage />} />
             <Route path="/404" element={<NotFound />} />
             <Route path="/:slug" element={<SlugPage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

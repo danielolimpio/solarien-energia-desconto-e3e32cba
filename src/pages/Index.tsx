@@ -9,6 +9,7 @@ import SolarienSection from "@/components/sections/SolarienSection";
 import ContentSection from "@/components/sections/ContentSection";
 import FAQSection from "@/components/sections/FAQSection";
 import CTASection from "@/components/sections/CTASection";
+import BlogPreviewSection from "@/components/sections/BlogPreviewSection";
 import Footer from "@/components/Footer";
 
 const Index = () => {
@@ -81,6 +82,7 @@ const Index = () => {
         <Header />
         <main>
           <Hero />
+          <BlogPreviewSection />
           <AboutSection />
           <HowItWorksSection />
           <BenefitsSection />
