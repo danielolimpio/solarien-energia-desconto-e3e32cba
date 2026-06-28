@@ -35,7 +35,7 @@ const ArticleMiddleImage = ({ src, alt }: { src: string; alt: string }) => (
   </figure>
 );
 
-const ArticleContent = () => (
+const ArticleContent = ({ middleImage }: { middleImage?: string }) => (
   <div className="prose-content space-y-6 text-foreground/85 leading-relaxed text-[1.02rem]">
     <p className="lead text-lg md:text-xl text-foreground/90 leading-relaxed font-medium">
       Se a conta de luz da sua empresa virou um dos maiores pesos do orçamento,
